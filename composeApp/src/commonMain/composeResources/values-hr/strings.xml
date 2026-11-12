@@ -121,7 +121,7 @@
     <string name="about_us">O aplikaciji us</string>
     <string name="version">Version</string>
     <string name="github">Github</string>
-    <string name="maxrave_dev">Mayur Raut</string>
+    <string name="Mayur Raut_dev">Mayur Raut</string>
     <string name="buy_me_a_coffee">Buy me a coffee</string>
     <string name="developer_blog">Developer Blog</string>
     <string name="developer_blog_tagline">Read dev notes, tutorials &amp; behind-the-scenes</string>
@@ -205,7 +205,7 @@
     <string name="save">Spremi</string>
     <string name="crop_cover">Crop cover</string>
     <string name="saved">Spremljeno</string>
-    <string name="sponsor_block_intro">SponsorBlock is a crowd-sourced system for skipping annoying parts of YouTube videos.\nViše information: https://sponsor.ajay.app/\nIn ORiON, SponsorBlock is only available when the device is online</string>
+    <string name="sponsor_block_intro">SponsorBlock is a crowd-sourced system for skipping annoying parts of YouTube videos.\nIn ORiON, SponsorBlock is only available when the device is online</string>
     <string name="skip_sponsor_part_of_video">Skip sponsor part of video</string>
     <string name="customactivityoncrash_error_activity_error_occurred_explanation">An unexpected error occurred. Sorry for the inconvenience.</string>
     <string name="customactivityoncrash_error_activity_restart_app">Restart app</string>
@@ -282,7 +282,7 @@
     <string name="older_first">Older First</string>
     <string name="newer_first">Nevoer First</string>
     <string name="added_date">Dodajed date</string>
-    <string name="credit_app">A simple music app using YouTube Music for backend \n\nORiON is an open source project to stream music from YouTube and YouTube Music without ads and tracking. ORiON provides many features:\n\n - Streaming music \n - Synced lyrics\n - Personalize data\n - etc… \n\nORiON is always free and no ads\n\nBuild with ❤️ from Tuan Minh Nguyen Duc (Mayur Raut)</string>
+    <string name="credit_app">A simple music app using YouTube Music for backend \n\nORiON is an open source project to stream music from YouTube and YouTube Music without ads and tracking. ORiON provides many features:\n\n - Streaming music \n - Synced lyrics\n - Personalize data\n - etc… \n\nORiON is always free and no ads\n\nBuild with ❤️ from Mayur Raut</string>
     <string name="issue_tracker">Issue Tracker</string>
     <string name="featured_playlists">Featured Popisi za reprodukciju</string>
     <string name="featured_inArtist">Featured on</string>
@@ -695,13 +695,13 @@
     <string name="not_available_while_casting">Nije dostupno while casting</string>
     <string name="import_data">Import playlists</string>
     <string name="import_playlists_from_other_apps">Import playlists from another app</string>
-    <string name="import_data_intro">Import brings in playlists converted from Spotify or another YT Music client app.\nConverting tool: https://www.simpmusic.org/tools\nIn ORiON, only playlist files in our own format can be imported</string>
+    <string name="import_data_intro">Import brings in playlists converted from Spotify or another YT Music client app.\nIn ORiON, only playlist files in our own format can be imported</string>
     <string name="import_reading_file">Reading file…</string>
     <string name="import_progress_songs">%1$d of %2$d songs</string>
     <string name="import_result">Stvorid %1$d playlists and imported %2$d songs.</string>
     <string name="import_result_skipped">%1$d entries were skipped because their song was missing from the file.</string>
     <string name="import_failed">Import failed</string>
-    <string name="import_invalid_file">This file is not a valid ORiON import file. Convert your library at simpmusic.org first.</string>
+    <string name="import_invalid_file">This file is not a valid ORiON import file. Convert your library at ORiON first.</string>
     <string name="analytics">Analytics</string>
     <string name="select_all">Select all</string>
     <string name="n_selected">%1$d selected</string>

@@ -121,7 +121,7 @@
     <string name="about_us">Hakkımızda</string>
     <string name="version">Sürüm</string>
     <string name="github">GitHub</string>
-    <string name="maxrave_dev">Mayur Raut</string>
+    <string name="Mayur Raut_dev">Mayur Raut</string>
     <string name="buy_me_a_coffee">Bana bir kahve ısmarla</string>
     <string name="paypal">PayPal</string>
     <string name="title">Başlık</string>
@@ -198,7 +198,7 @@
     <string name="what_segments_will_be_skipped">Hangi kısımlar atlanacak</string>
     <string name="save">Kaydet</string>
     <string name="saved">Kaydedildi</string>
-    <string name="sponsor_block_intro">SponsorBlock, YouTube videolarının rahatsız edici bölümlerini atlamak için kitle kaynaklı bir sistemdir.\nDaha fazla bilgi: https://sponsor.ajay.app/\nORiON'te SponsorBlock yalnızca cihaz çevrimiçi olduğunda kullanılabilir</string>
+    <string name="sponsor_block_intro">SponsorBlock, YouTube videolarının rahatsız edici bölümlerini atlamak için kitle kaynaklı bir sistemdir.\nORiON'te SponsorBlock yalnızca cihaz çevrimiçi olduğunda kullanılabilir</string>
     <string name="skip_sponsor_part_of_video">Videonun tanıtım bölümünü atla</string>
     <string name="customactivityoncrash_error_activity_error_occurred_explanation">Beklenmedik bir hata oluştu. Verdiğimiz rahatsızlıktan dolayı özür dileriz.</string>
     <string name="customactivityoncrash_error_activity_restart_app">Uygulamayı yeniden başlat</string>
@@ -274,7 +274,7 @@
     <string name="older_first">Eskiden Yeniye</string>
     <string name="newer_first">Yeniden Eskiye</string>
     <string name="added_date">Tarih eklendi</string>
-    <string name="credit_app">Arka uç olarak YouTube Music'i kullanan basit bir müzik uygulaması \n\nORiON, reklamlar ve izleme olmadan YouTube ve YouTube Music'ten müzik akışı sağlayan açık kaynaklı bir projedir. ORiON birçok özellik sunar:\n\n - Müzik akışı \n - Senkronize şarkı sözleri\n - Verileri kişiselleştirin\n - vb… \n\nORiON her zaman ücretsizdir ve reklam içermez\n\nTuan Minh Nguyen Duc'tan ❤️ ile oluşturun (Mayur Raut)</string>
+    <string name="credit_app">Arka uç olarak YouTube Music'i kullanan basit bir müzik uygulaması \n\nORiON, reklamlar ve izleme olmadan YouTube ve YouTube Music'ten müzik akışı sağlayan açık kaynaklı bir projedir. ORiON birçok özellik sunar:\n\n - Müzik akışı \n - Senkronize şarkı sözleri\n - Verileri kişiselleştirin\n - vb… \n\nORiON her zaman ücretsizdir ve reklam içermez\n\nMayur Raut'tan ❤️ ile oluşturun (Mayur Raut)</string>
     <string name="issue_tracker">Sorun Takibi</string>
     <string name="featured_playlists">Öne Çıkan Oynatma Listeleri</string>
     <string name="featured_inArtist">Bulunduğu listeler</string>

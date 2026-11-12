@@ -116,7 +116,7 @@
     <string name="about_us">Tentang kami</string>
     <string name="version">Versi</string>
     <string name="github">Github</string>
-    <string name="maxrave_dev">Mayur Raut</string>
+    <string name="Mayur Raut_dev">Mayur Raut</string>
     <string name="buy_me_a_coffee">Belikan aku secangkir kopi</string>
     <string name="paypal">PayPal</string>
     <string name="title">Judul</string>
@@ -192,7 +192,7 @@
     <string name="what_segments_will_be_skipped">Segmen apa saja yang akan dilewati</string>
     <string name="save">Simpan</string>
     <string name="saved">Tersimpan</string>
-    <string name="sponsor_block_intro">SponsorBlock adalah sistem yang bersumber dari orang banyak untuk melewatkan bagian video YouTube yang mengganggu.\nInformasi lebih lanjut: https://sponsor.ajay.app/\nDi ORiON, SponsorBlock hanya tersedia saat perangkat online</string>
+    <string name="sponsor_block_intro">SponsorBlock adalah sistem yang bersumber dari orang banyak untuk melewatkan bagian video YouTube yang mengganggu.\nDi ORiON, SponsorBlock hanya tersedia saat perangkat online</string>
     <string name="skip_sponsor_part_of_video">Lewati bagian sponsor dari video</string>
     <string name="customactivityoncrash_error_activity_error_occurred_explanation">Terjadi kesalahan yang tidak terduga. Mohon maaf atas ketidaknyamanan ini.</string>
     <string name="customactivityoncrash_error_activity_restart_app">Mulai ulang aplikasi</string>
@@ -259,7 +259,7 @@
     <string name="suggest">Saran</string>
     <string name="reload">Memuat ulang</string>
     <string name="added_date">Tanggal ditambahkan</string>
-    <string name="credit_app">Aplikasi musik sederhana yang menggunakan YouTube Music untuk backend \n\nORiON adalah proyek sumber terbuka untuk streaming musik dari YouTube dan YouTube Music tanpa iklan dan pelacakan. ORiON menyediakan banyak fitur:\n\n - Streaming musik\n - Lirik yang disinkronkan\n - Personalisasi data\n - dll... \n\nORiON selalu gratis dan tidak ada iklan\n\nDibangun dengan ❤️ oleh Tuan Minh Nguyen Duc (Mayur Raut)</string>
+    <string name="credit_app">Aplikasi musik sederhana yang menggunakan YouTube Music untuk backend \n\nORiON adalah proyek sumber terbuka untuk streaming musik dari YouTube dan YouTube Music tanpa iklan dan pelacakan. ORiON menyediakan banyak fitur:\n\n - Streaming musik\n - Lirik yang disinkronkan\n - Personalisasi data\n - dll... \n\nORiON selalu gratis dan tidak ada iklan\n\nDibangun dengan ❤️ oleh Mayur Raut</string>
     <string name="issue_tracker">Pelacak Masalah</string>
     <string name="featured_playlists">Rekomendasi Playlist</string>
     <string name="featured_inArtist">Termasuk di</string>

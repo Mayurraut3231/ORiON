@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="Song_and_artist_name">गाना • %1$s</string>
     <string name="playlist_and_author">प्लेलिस्ट • %1$s</string>
@@ -127,7 +127,7 @@
     <string name="about_us">हमारे बारे में</string>
     <string name="version">संस्करण</string>
     <string name="github">गिट्हब</string>
-    <string name="maxrave_dev">मयूर राउत</string>
+    <string name="Mayur Raut_dev">मयूर राउत</string>
     <string name="follow_me_on_x">मुझे X पर फ़ॉलो करें</string>
     <string name="buy_me_a_coffee">मुझे एक कॉफी खरीदें</string>
     <string name="developer_blog">डेवलपर ब्लॉग</string>
@@ -202,7 +202,7 @@
     <string name="what_segments_will_be_skipped">कौन से सेगमेंट छोड़े जाएंगे</string>
     <string name="save">सहेजें</string>
     <string name="saved">सहेजा गया</string>
-    <string name="sponsor_block_intro">स्पॉन्सरब्लॉक यूट्यूब वीडियो के परेशान करने वाले हिस्सों को छोड़ने की एक सामूहिक प्रणाली है।\nअधिक जानकारी: https://sponsor.ajay.app/\nसिम्पम्यूजिक में, स्पॉन्सरब्लॉक केवल डिवाइस ऑनलाइन होने पर उपलब्ध है</string>
+    <string name="sponsor_block_intro">स्पॉन्सरब्लॉक यूट्यूब वीडियो के परेशान करने वाले हिस्सों को छोड़ने की एक सामूहिक प्रणाली है।\nसिम्पम्यूजिक में, स्पॉन्सरब्लॉक केवल डिवाइस ऑनलाइन होने पर उपलब्ध है</string>
     <string name="skip_sponsor_part_of_video">वीडियो के प्रायोजक भाग को छोड़ें</string>
     <string name="customactivityoncrash_error_activity_error_occurred_explanation">एक अप्रत्याशित त्रुटि हुई। क्षमा करें।</string>
     <string name="customactivityoncrash_error_activity_restart_app">ऐप पुनः प्रारंभ करें</string>

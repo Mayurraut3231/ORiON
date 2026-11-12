@@ -116,7 +116,7 @@
     <string name="about_us">Tietoa meistä</string>
     <string name="version">Versio</string>
     <string name="github">GitHub</string>
-    <string name="maxrave_dev">Mayur Raut</string>
+    <string name="Mayur Raut_dev">Mayur Raut</string>
     <string name="buy_me_a_coffee">Osta minulle kahvi</string>
     <string name="paypal">PayPal</string>
     <string name="title">Otsikko</string>
@@ -186,7 +186,7 @@
     <string name="what_segments_will_be_skipped">Valise ohitettavat segmentit</string>
     <string name="save">Tallenna</string>
     <string name="saved">Tallennettu</string>
-    <string name="sponsor_block_intro">SponsorBlock on joukkoistettu järjestelmä YouTube-videoiden ärsyttävien osien ohittamiseen.\nLisätietoja: https://sponsor.ajay.app/\nORiONissa SponsorBlock on käytettävissä vain, kun laite on online-tilassa</string>
+    <string name="sponsor_block_intro">SponsorBlock on joukkoistettu järjestelmä YouTube-videoiden ärsyttävien osien ohittamiseen.\nORiONissa SponsorBlock on käytettävissä vain, kun laite on online-tilassa</string>
     <string name="skip_sponsor_part_of_video">Ohita videon sponsoriosa</string>
     <string name="customactivityoncrash_error_activity_error_occurred_explanation">Tapahtui odottamaton virhe. Pahoittelemme.</string>
     <string name="customactivityoncrash_error_activity_restart_app">Käynnistä sovellus uudelleen</string>
@@ -254,7 +254,7 @@
     <string name="reload">Lataa uudelleen</string>
     <string name="newer_first">Uusimmat ensin</string>
     <string name="added_date">Lisäyspäivämäärä</string>
-    <string name="credit_app">Yksinkertainen musiikkisovellus, joka käyttää YouTube Musicin taustajärjestelmää \n\nORiON on avoimen lähdekoodin projekti musiikin suoratoistoon YouTubesta ja YouTube Musicista ilman mainoksia ja seurantaa. ORiON tarjoaa monia ominaisuuksia:\n\n - Musiikin suoratoisto \n - Synkronoidut sanoitukset\n - Tietojen mukauttaminen\n - jne… \n\nORiON on aina ilmainen ja vailla mainoksia\n\nTehty ❤️:llä, Tuan Minh Nguyen Duc (Mayur Raut)</string>
+    <string name="credit_app">Yksinkertainen musiikkisovellus, joka käyttää YouTube Musicin taustajärjestelmää \n\nORiON on avoimen lähdekoodin projekti musiikin suoratoistoon YouTubesta ja YouTube Musicista ilman mainoksia ja seurantaa. ORiON tarjoaa monia ominaisuuksia:\n\n - Musiikin suoratoisto \n - Synkronoidut sanoitukset\n - Tietojen mukauttaminen\n - jne… \n\nORiON on aina ilmainen ja vailla mainoksia\n\nTehty ❤️:llä, Mayur Raut</string>
     <string name="issue_tracker">Tikettijärjestelmä</string>
     <string name="featured_playlists">Suositellut soittolistat</string>
     <string name="featured_inArtist">Mukana näissä</string>

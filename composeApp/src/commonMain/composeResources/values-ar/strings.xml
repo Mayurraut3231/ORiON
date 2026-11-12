@@ -117,7 +117,7 @@
     <string name="about_us">من نحن</string>
     <string name="version">الإصدار</string>
     <string name="github">Github</string>
-    <string name="maxrave_dev">Mayur Raut</string>
+    <string name="Mayur Raut_dev">Mayur Raut</string>
     <string name="buy_me_a_coffee">اشتر لي قهوة</string>
     <string name="paypal">PayPal</string>
     <string name="title">العنوان</string>
@@ -190,7 +190,7 @@
     <string name="what_segments_will_be_skipped">ما هي الأجزاء التي سيتم تخطيها</string>
     <string name="save">حفظ</string>
     <string name="saved">تم الحفظ</string>
-    <string name="sponsor_block_intro">SponsorBlock هو نظام جماهيري لتخطي الأجزاء المزعجة من مقاطع فيديو YouTube.\nللمزيد من المعلومات: https://sponsor.ajay.app/\n في ORiON، يتوفر SponsorBlock فقط عندما يكون الجهاز متصلاً بالإنترنت</string>
+    <string name="sponsor_block_intro">SponsorBlock هو نظام جماهيري لتخطي الأجزاء المزعجة من مقاطع فيديو YouTube.\n في ORiON، يتوفر SponsorBlock فقط عندما يكون الجهاز متصلاً بالإنترنت</string>
     <string name="skip_sponsor_part_of_video">تخطي جزء الراعي من الفيديو</string>
     <string name="customactivityoncrash_error_activity_error_occurred_explanation">حدث خطأ غير متوقع. نأسف للإزعاج.</string>
     <string name="customactivityoncrash_error_activity_restart_app">إعادة تشغيل التطبيق</string>
@@ -265,7 +265,7 @@
     <string name="older_first">إظهار الأقدم أولاً</string>
     <string name="newer_first">إظهار الأحدث أولاً</string>
     <string name="added_date">تاريخ الإضافة</string>
-    <string name="credit_app">تطبيق موسيقي بسيط يستخدم YouTube Music for backend \n\nORiON هو مشروع مفتوح المصدر لبث الموسيقى من YouTube و YouTube Music بدون إعلانات وتتبُّع. يوفر ORiON العديد من الميزات:\n\n - بث الموسيقى \n - مزامنة كلمات الاغاني\n - تخصيص البيانات\n - إلخ… \n\nORiON مجاني دائمًا وبدون إعلانات\n\nتم تطويره بـ ❤️ بواسطة Tuan Minh Nguyen Duc (Mayur Raut)</string>
+    <string name="credit_app">تطبيق موسيقي بسيط يستخدم YouTube Music for backend \n\nORiON هو مشروع مفتوح المصدر لبث الموسيقى من YouTube و YouTube Music بدون إعلانات وتتبُّع. يوفر ORiON العديد من الميزات:\n\n - بث الموسيقى \n - مزامنة كلمات الاغاني\n - تخصيص البيانات\n - إلخ… \n\nORiON مجاني دائمًا وبدون إعلانات\n\nتم تطويره بـ ❤️ بواسطة Mayur Raut</string>
     <string name="issue_tracker">متعقب المشاكل</string>
     <string name="featured_playlists">قوائم التشغيل المميزة</string>
     <string name="featured_inArtist">مميز في</string>
@@ -353,6 +353,6 @@
     <string name="go_to_log_in_page">الذهاب إلى صفحة تسجيل الدخول</string>
     <string name="proxy_host"></string>
     <string name="download_speed">سرعة التحميل %1$s </string>
-    <string name="import_invalid_file">هذا الملف ليس ملف استيراد ORiON صالح. حول مكتبتك علي simpmusic.org أولا.</string>
+    <string name="import_invalid_file">هذا الملف ليس ملف استيراد ORiON صالح. حول مكتبتك علي ORiON أولا.</string>
     <!-- Listen Together -->
 </resources>

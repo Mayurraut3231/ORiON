@@ -121,7 +121,7 @@
     <string name="about_us">Sobre nosaltres</string>
     <string name="version">Versió</string>
     <string name="github">Github</string>
-    <string name="maxrave_dev">Mayur Raut</string>
+    <string name="Mayur Raut_dev">Mayur Raut</string>
     <string name="buy_me_a_coffee">Compra'm un cafè</string>
     <string name="developer_blog">Blog del desenvolupador</string>
     <string name="developer_blog_tagline">Llegir notes de desenvolupament, tutorials &amp; continguts entre bastidors</string>
@@ -200,7 +200,7 @@
     <string name="what_segments_will_be_skipped">Quins segments se saltaran</string>
     <string name="save">Desa</string>
     <string name="saved">Desat</string>
-    <string name="sponsor_block_intro">SponsorBlock és un sistema de col·laboració oberta per saltar parts molestes dels vídeos de YouTube.\nMés informació: https://sponsor.ajay.app/\nA ORiON, SponsorBlock només està disponible quan el dispositiu està en línia </string>
+    <string name="sponsor_block_intro">SponsorBlock és un sistema de col·laboració oberta per saltar parts molestes dels vídeos de YouTube.\nA ORiON, SponsorBlock només està disponible quan el dispositiu està en línia </string>
     <string name="skip_sponsor_part_of_video">Omet la part del patrocinador del vídeo</string>
     <string name="customactivityoncrash_error_activity_error_occurred_explanation">S'ha produït un error inesperat. Disculpeu les molèsties.</string>
     <string name="customactivityoncrash_error_activity_restart_app">Reinicieu l'aplicació</string>
@@ -277,7 +277,7 @@
     <string name="older_first">Més antics primer</string>
     <string name="newer_first">Més nous primer</string>
     <string name="added_date">Data afegida</string>
-    <string name="credit_app">Una aplicació de música senzilla que utilitza YouTube Music per al backend \n\nORiON és un projecte de codi obert per reproduir música de YouTube i YouTube Music sense anuncis ni seguiment. ORiON ofereix moltes funcions:\n\n - Reproducció de música en temps real \n - Lletres sincronitzades\n - Personalització de dades\n - etc... \n\nORiON sempre és gratuït i sense anuncis\n\nCrea amb ❤️ de Tuan Minh Nguyen Duc (maxrave -dev)</string>
+    <string name="credit_app">Una aplicació de música senzilla que utilitza YouTube Music per al backend \n\nORiON és un projecte de codi obert per reproduir música de YouTube i YouTube Music sense anuncis ni seguiment. ORiON ofereix moltes funcions:\n\n - Reproducció de música en temps real \n - Lletres sincronitzades\n - Personalització de dades\n - etc... \n\nORiON sempre és gratuït i sense anuncis\n\nCrea amb ❤️ de Mayur Raut</string>
     <string name="issue_tracker">Detector de problemes</string>
     <string name="featured_playlists">Llistes de reproducció destacades</string>
     <string name="featured_inArtist">Destacat a</string>

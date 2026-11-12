@@ -2199,23 +2199,9 @@ fun SettingScreen(
         item(key = "sponsor_block") {
             SettingGroup(
                 title = stringResource(Res.string.sponsorBlock),
-                // The project's note sits under the card, where a grouped list keeps its explanations.
                 footer = {
-                    val beforeUrl = stringResource(Res.string.sponsor_block_intro).substringBefore("https://sponsor.ajay.app/")
-                    val afterUrl = stringResource(Res.string.sponsor_block_intro).substringAfter("https://sponsor.ajay.app/")
                     Text(
-                        buildAnnotatedString {
-                            append(beforeUrl)
-                            withLink(
-                                LinkAnnotation.Url(
-                                    "https://sponsor.ajay.app/",
-                                    TextLinkStyles(style = SpanStyle(color = MaterialTheme.colorScheme.primary)),
-                                ),
-                            ) {
-                                append("https://sponsor.ajay.app/")
-                            }
-                            append(afterUrl)
-                        },
+                        text = stringResource(Res.string.sponsor_block_intro),
                         style = typo().bodySmall,
                     )
                 },
@@ -2582,21 +2568,8 @@ fun SettingScreen(
             SettingGroup(
                 title = stringResource(Res.string.backup),
                 footer = {
-                    val beforeUrl = stringResource(Res.string.import_data_intro).substringBefore("https://www.simpmusic.org/tools")
-                    val afterUrl = stringResource(Res.string.import_data_intro).substringAfter("https://www.simpmusic.org/tools")
                     Text(
-                        buildAnnotatedString {
-                            append(beforeUrl)
-                            withLink(
-                                LinkAnnotation.Url(
-                                    "https://www.simpmusic.org/tools",
-                                    TextLinkStyles(style = SpanStyle(color = MaterialTheme.colorScheme.primary)),
-                                ),
-                            ) {
-                                append("https://www.simpmusic.org/tools")
-                            }
-                            append(afterUrl)
-                        },
+                        text = stringResource(Res.string.import_data_intro),
                         style = typo().bodySmall,
                     )
                 },

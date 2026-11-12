@@ -121,7 +121,7 @@
     <string name="about_us">เกี่ยวกับเรา</string>
     <string name="version">เวอร์ชัน</string>
     <string name="github">Github</string>
-    <string name="maxrave_dev">Mayur Raut</string>
+    <string name="Mayur Raut_dev">Mayur Raut</string>
     <string name="buy_me_a_coffee">เลี้ยงกาแฟให้ฉัน</string>
     <string name="developer_blog">บล็อกนักพัฒนา</string>
     <string name="developer_blog_tagline">อ่านบันทึกจากผู้พัฒนา บทแนะนำ &amp; เบื้องหลังการทำงาน</string>
@@ -200,7 +200,7 @@
     <string name="what_segments_will_be_skipped">ส่วนใดจะถูกข้ามไป</string>
     <string name="save">บันทึก</string>
     <string name="saved">บันทึกแล้ว</string>
-    <string name="sponsor_block_intro">SponsorBlock เป็นระบบที่ผู้คนกลุ่มหนึ่งสร้างมาสำหรับการข้ามส่วนที่น่ารำคาญของวิดีโอบน YouTube\nข้อมูลเพิ่มเติม: https://sponsor.ajay.app/\nในแอปORiON SponsorBlock จะใช้งานได้เมื่ออุปกรณ์ออนไลน์อยู่เท่านั้น</string>
+    <string name="sponsor_block_intro">SponsorBlock เป็นระบบที่ผู้คนกลุ่มหนึ่งสร้างมาสำหรับการข้ามส่วนที่น่ารำคาญของวิดีโอบน YouTube\nในแอปORiON SponsorBlock จะใช้งานได้เมื่ออุปกรณ์ออนไลน์อยู่เท่านั้น</string>
     <string name="skip_sponsor_part_of_video">ข้ามส่วนผู้สนับสนุนของวิดีโอ</string>
     <string name="customactivityoncrash_error_activity_error_occurred_explanation">เกิดข้อผิดพลาดที่ไม่คาดคิด ขออภัยในความไม่สะดวก</string>
     <string name="customactivityoncrash_error_activity_restart_app">รีสตาร์ทแอป</string>
@@ -277,7 +277,7 @@
     <string name="older_first">เรียงจากเก่าไปใหม่</string>
     <string name="newer_first">เรียงจากใหม่ไปเก่า</string>
     <string name="added_date">เพิ่มวันที่</string>
-    <string name="credit_app">แอปเพลงง่ายๆ ที่ใช้ YouTube Music สำหรับแบ็กเอนด์ \n\nORiON เป็นโครงการโอเพ่นซอร์สสำหรับสตรีมเพลงจาก YouTube และ YouTube Music โดยไม่มีโฆษณาและการติดตาม ORiON มีคุณสมบัติมากมาย:\n\n - สตรีมเพลง \n - เนื้อเพลงที่ซิงค์กัน\n - ปรับแต่งข้อมูล\n - ฯลฯ…\n\nORiON ฟรีเสมอและไม่มีโฆษณา\n\nสร้างด้วย ❤️ จาก Tuan Minh Nguyen Duc (Mayur Raut)</string>
+    <string name="credit_app">แอปเพลงง่ายๆ ที่ใช้ YouTube Music สำหรับแบ็กเอนด์ \n\nORiON เป็นโครงการโอเพ่นซอร์สสำหรับสตรีมเพลงจาก YouTube และ YouTube Music โดยไม่มีโฆษณาและการติดตาม ORiON มีคุณสมบัติมากมาย:\n\n - สตรีมเพลง \n - เนื้อเพลงที่ซิงค์กัน\n - ปรับแต่งข้อมูล\n - ฯลฯ…\n\nORiON ฟรีเสมอและไม่มีโฆษณา\n\nสร้างด้วย ❤️ จาก Mayur Raut</string>
     <string name="issue_tracker">ติดตามปัญหา</string>
     <string name="featured_playlists">เพลย์ลิสต์ที่โดดเด่น</string>
     <string name="featured_inArtist">โดดเด่นบน</string>

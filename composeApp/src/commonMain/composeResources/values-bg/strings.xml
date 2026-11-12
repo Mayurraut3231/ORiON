@@ -121,7 +121,7 @@
     <string name="about_us">За нас</string>
     <string name="version">Версия</string>
     <string name="github">Github</string>
-    <string name="maxrave_dev">Mayur Raut</string>
+    <string name="Mayur Raut_dev">Mayur Raut</string>
     <string name="buy_me_a_coffee">Buy me a coffee</string>
     <string name="paypal">PayPal</string>
     <string name="title">Заглавие</string>
@@ -196,7 +196,7 @@
     <string name="what_segments_will_be_skipped">Кой сегмент ще бъде прескочен</string>
     <string name="save">Запази</string>
     <string name="saved">Запазено</string>
-    <string name="sponsor_block_intro">SponsorBlock е система за прескачане на досадни части от YouTube видеа.\nЗа повече информация: https://sponsor.ajay.app/\nIn ORiON, SponsorBlock е наличен когато устройството е на линия</string>
+    <string name="sponsor_block_intro">SponsorBlock е система за прескачане на досадни части от YouTube видеа.\nIn ORiON, SponsorBlock е наличен когато устройството е на линия</string>
     <string name="skip_sponsor_part_of_video">Прескачане на спонсорираната част</string>
     <string name="customactivityoncrash_error_activity_error_occurred_explanation">Появи се непредвидена грешка. Извиняваме се за неудобството.</string>
     <string name="customactivityoncrash_error_activity_restart_app">Рестартирай приложението</string>
@@ -272,7 +272,7 @@
     <string name="older_first">Най-стари</string>
     <string name="newer_first">Най-нови</string>
     <string name="added_date">Дата на добавяне</string>
-    <string name="credit_app">Опростено приложение за музика, което използва YouTube Music за бекенд \n\nORiON е проект с отворен код, който стриймва музика от YouTube и YouTube Music без реклами и проследяване. ORiON идва с много функции:\n\n - Стрийминг \n - Текстове\n - Персонализиране на данните\n - и т. н… \n\nORiON е безплатен и без реклами\n\nBuild с ❤️ от Tuan Minh Nguyen Duc (Mayur Raut)</string>
+    <string name="credit_app">Опростено приложение за музика, което използва YouTube Music за бекенд \n\nORiON е проект с отворен код, който стриймва музика от YouTube и YouTube Music без реклами и проследяване. ORiON идва с много функции:\n\n - Стрийминг \n - Текстове\n - Персонализиране на данните\n - и т. н… \n\nORiON е безплатен и без реклами\n\nBuild с ❤️ от Mayur Raut</string>
     <string name="issue_tracker">Тракър на задачи</string>
     <string name="featured_playlists">Избрани плейлисти</string>
     <string name="featured_inArtist">Участва в</string>

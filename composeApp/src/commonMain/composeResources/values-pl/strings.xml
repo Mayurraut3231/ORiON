@@ -129,13 +129,13 @@
     <string name="about_us">O nas</string>
     <string name="version">Wersja</string>
     <string name="github">Github</string>
-    <string name="maxrave_dev">Mayur Raut</string>
+    <string name="Mayur Raut_dev">Mayur Raut</string>
     <string name="follow_me_on_x">Obserwuj mnie na X</string>
     <string name="buy_me_a_coffee">Kup mi kawę</string>
     <string name="developer_blog">Blog dewelopera</string>
     <string name="developer_blog_tagline">Czytaj notatki deweloperów &amp; poradniki i materiały zza kulis</string>
     <string name="blog_promo_title">Nowości od dewelopera</string>
-    <string name="blog_promo_message">​Właśnie wystartowałem z moim osobistym blogiem pod adresem simpmusic.org – dzielę się tam historią powstania ORiON, technicznymi analizami ze świata music-tech oraz notatkami inżynieryjnymi. Zajrzyj, jeśli jesteś ciekawy ✨</string>
+    <string name="blog_promo_message">​Właśnie wystartowałem z moim osobistym blogiem pod adresem ORiON – dzielę się tam historią powstania ORiON, technicznymi analizami ze świata music-tech oraz notatkami inżynieryjnymi. Zajrzyj, jeśli jesteś ciekawy ✨</string>
     <string name="visit_blog">Odwiedź blog</string>
     <string name="paypal">PayPal</string>
     <string name="title">Tytuł</string>
@@ -217,7 +217,7 @@
     <string name="save">Zapisz</string>
     <string name="crop_cover">Przytnij okładkę</string>
     <string name="saved">Zapisano</string>
-    <string name="sponsor_block_intro">SponsorBlock to społecznie rozwijany system pomijania irytujących fragmentów filmów w serwisie YouTube.\nWięcej informacji: https://sponsor.ajay.app/\nW ORiON funkcja SponsorBlock jest dostępna tylko wtedy, gdy urządzenie jest w trybie online</string>
+    <string name="sponsor_block_intro">SponsorBlock to społecznie rozwijany system pomijania irytujących fragmentów filmów w serwisie YouTube.\nW ORiON funkcja SponsorBlock jest dostępna tylko wtedy, gdy urządzenie jest w trybie online</string>
     <string name="skip_sponsor_part_of_video">Pomiń część filmu sponsora</string>
     <string name="customactivityoncrash_error_activity_error_occurred_explanation">Wystąpił nieoczekiwany błąd. Przepraszamy za niedogodności.</string>
     <string name="customactivityoncrash_error_activity_restart_app">Zrestartuj aplikację</string>
@@ -294,7 +294,7 @@
     <string name="older_first">Najpierw starsze</string>
     <string name="newer_first">Najpierw nowsze</string>
     <string name="added_date">Dodana data</string>
-    <string name="credit_app">Prosta aplikacja muzyczna wykorzystująca YouTube Music jako backend\n\nORiON to projekt open source służący do strumieniowego przesyłania muzyki z serwisów YouTube i YouTube Music bez reklam i śledzenia. ORiON oferuje wiele funkcji:\n\n - Strumieniowe przesyłanie muzyki \n - Zsynchronizowane teksty piosenek\n - Personalizację danych\n - itp. \n\nORiON jest zawsze bezpłatny i nie zawiera reklam\n\nStworzony z ❤️ przez Tuan Minh Nguyen Duc (Mayur Raut)</string>
+    <string name="credit_app">Prosta aplikacja muzyczna wykorzystująca YouTube Music jako backend\n\nORiON to projekt open source służący do strumieniowego przesyłania muzyki z serwisów YouTube i YouTube Music bez reklam i śledzenia. ORiON oferuje wiele funkcji:\n\n - Strumieniowe przesyłanie muzyki \n - Zsynchronizowane teksty piosenek\n - Personalizację danych\n - itp. \n\nORiON jest zawsze bezpłatny i nie zawiera reklam\n\nStworzony z ❤️ przez Mayur Raut</string>
     <string name="issue_tracker">Lista problemow</string>
     <string name="featured_playlists">Polecane playlisty</string>
     <string name="featured_inArtist">Polecane</string>

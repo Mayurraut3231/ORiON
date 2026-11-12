@@ -116,7 +116,7 @@
     <string name="about_us">אודותינו</string>
     <string name="version">גרסה</string>
     <string name="github">גיטהאב</string>
-    <string name="maxrave_dev">Mayur Raut</string>
+    <string name="Mayur Raut_dev">Mayur Raut</string>
     <string name="buy_me_a_coffee">קנה לי קפה</string>
     <string name="paypal">פיי-פאל</string>
     <string name="title">כותרת</string>
@@ -192,7 +192,7 @@
     <string name="what_segments_will_be_skipped">על אילו קטעים ידלגו</string>
     <string name="save">שמור</string>
     <string name="saved">נשמר</string>
-    <string name="sponsor_block_intro">חסימת חסות היא מערכת ממקור המונים לדילוג על חלקים מעצבנים בסרטוני יוטיוב.\nמידע נוסף: https://sponsor.ajay.app/\n ב-ORiON, חסימת חסות זמין רק כאשר המכשיר מחובר לאינטרנט</string>
+    <string name="sponsor_block_intro">חסימת חסות היא מערכת ממקור המונים לדילוג על חלקים מעצבנים בסרטוני יוטיוב.\n ב-ORiON, חסימת חסות זמין רק כאשר המכשיר מחובר לאינטרנט</string>
     <string name="skip_sponsor_part_of_video">דלג על חלק נותני החסות בסרטון</string>
     <string name="customactivityoncrash_error_activity_error_occurred_explanation">שגיאה לא צפויה התרחשה. מצטער על אי הנוחות.</string>
     <string name="customactivityoncrash_error_activity_restart_app">הפעל מחדש את האפליקציה</string>
@@ -260,7 +260,7 @@
     <string name="reload">טען מחדש</string>
     <string name="added_date">נוסף תאריך</string>
     <string name="credit_app">אפליקציית מוזיקה פשוטה באמצעות YouTube Music עבור backend \n\nORiON הוא פרויקט קוד פתוח להזרמת מוזיקה מ-YouTube ו-YouTube Music ללא מודעות ומעקב. ORiON מספקת תכונות רבות:\n\n - הזרמת מוזיקה \n - מילים מסונכרנות\n - התאמה אישית של נתונים\n - אקו… \n\n
-ORiON תמיד בחינם וללא פרסומות\n\nבונה מ ❤️מ-Tuan Minh Nguyen Duc (Mayur Raut)</string>
+ORiON תמיד בחינם וללא פרסומות\n\nבונה מ ❤️מ-Mayur Raut</string>
     <string name="issue_tracker">מעקב סוגיות</string>
     <string name="featured_playlists">רשימות השמעה נבחרות</string>
     <string name="featured_inArtist">מצורף ב</string>
