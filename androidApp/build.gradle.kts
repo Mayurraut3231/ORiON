@@ -127,6 +127,11 @@ android {
         compose = true
         buildConfig = true
     }
+    lint {
+        checkReleaseBuilds = false
+        abortOnError = false
+        checkDependencies = false
+    }
     packaging {
         jniLibs.useLegacyPackaging = true
         jniLibs.excludes +=

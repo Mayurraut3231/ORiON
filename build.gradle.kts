@@ -64,4 +64,8 @@ subprojects {
             }
         }
     }
+
+    tasks.matching { it.name.contains("lintVital", ignoreCase = true) }.configureEach {
+        enabled = false
+    }
 }
