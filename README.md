@@ -42,7 +42,7 @@ A modern music streaming client for Android and Desktop by Mayur Raut. Built wit
 - Browsing Home, Charts, Podcast, Moods & Genre with YouTube Music data at high speed    
 - Search everything on YouTube    
 - Spotify Canvas and Animated Album Art supported (NEW)
-- Power your experience with SimpMusic Chart (https://chart.simpmusic.org/)
+- Power your experience with ORiON Charts
 - Play 1080p video option with subtitle    
 - Play YouTube Music live stations (NEW)
 - AI song suggestions and an AI reading of your music taste (NEW)

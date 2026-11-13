@@ -681,11 +681,6 @@ fun SearchScreen(
                                         textAlign = TextAlign.Center,
                                         modifier = Modifier.fillMaxWidth(),
                                     )
-                                    SimpMusicChartButton(
-                                        modifier = Modifier.padding(top = 10.dp),
-                                    ) {
-                                        uriHandler.openUri("https://chart.simpmusic.org")
-                                    }
                                 }
                             }
                             mood.sections.forEachIndexed { index, section ->
