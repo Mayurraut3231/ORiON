@@ -40,6 +40,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.BasicAlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -639,6 +640,9 @@ fun SettingScreen(
         mutableStateOf(false)
     }
     var showThirdPartyLibraries by rememberSaveable {
+        mutableStateOf(false)
+    }
+    var showAdminControlDialog by rememberSaveable {
         mutableStateOf(false)
     }
 
@@ -2732,14 +2736,23 @@ fun SettingScreen(
                 SettingItem(
                     title = stringResource(Res.string.check_for_update),
                     subtitle = "ORiON is up to date (v1.0.0)",
+                    onClick = {
+                        openUrl("https://github.com/Mayurraut3231/ORiON/releases")
+                    },
                 )
                 SettingItem(
                     title = "App Owner & Administrator",
                     subtitle = "Mayur Raut (ORiON)",
+                    onClick = {
+                        showAdminControlDialog = true
+                    },
                 )
                 SettingItem(
                     title = "Application Control",
-                    subtitle = "Full Admin Access Active",
+                    subtitle = "Full Admin Access Active (Tap to Open)",
+                    onClick = {
+                        showAdminControlDialog = true
+                    },
                 )
                 SettingItem(
                     title = stringResource(Res.string.third_party_libraries),
@@ -3262,6 +3275,59 @@ fun SettingScreen(
                     },
                 ) {
                     Text(text = alertState.dismiss)
+                }
+            },
+        )
+    }
+
+    if (showAdminControlDialog) {
+        AlertDialog(
+            onDismissRequest = { showAdminControlDialog = false },
+            title = {
+                Text(
+                    text = "👑 Admin Control Center",
+                    style = typo().titleMedium,
+                )
+            },
+            text = {
+                Column {
+                    Text(
+                        text = "Administrator: Mayur Raut\nApp: ORiON v1.0.0\nStatus: Master Admin Control Active\nSecurity: Signed with orion-admin.keystore",
+                        style = typo().bodyMedium,
+                    )
+                    Spacer(Modifier.height(14.dp))
+                    Text(
+                        text = "How to Control & Push Updates:",
+                        style = typo().labelLarge,
+                    )
+                    Spacer(Modifier.height(4.dp))
+                    Text(
+                        text = "1. Pushing new releases to your GitHub repository (Mayurraut3231/ORiON) controls your user updates.\n2. The original developer cannot push any updates to your application.\n3. You have full ownership and admin control over this build.",
+                        style = typo().bodySmall,
+                    )
+                    Spacer(Modifier.height(14.dp))
+                    Button(
+                        onClick = {
+                            openUrl("https://github.com/Mayurraut3231/ORiON/releases")
+                        },
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        Text("Manage Releases & Updates")
+                    }
+                    Spacer(Modifier.height(8.dp))
+                    TextButton(
+                        onClick = {
+                            openUrl("https://github.com/Mayurraut3231/ORiON")
+                        },
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        Text("Open ORiON GitHub Repository")
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = { showAdminControlDialog = false }) {
+                    Text("Close")
                 }
             },
         )
