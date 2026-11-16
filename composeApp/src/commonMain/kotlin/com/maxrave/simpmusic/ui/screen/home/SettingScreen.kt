@@ -355,7 +355,6 @@ import simpmusic.composeapp.generated.resources.lyrics_style_apple_music
 import simpmusic.composeapp.generated.resources.lyrics_style_classic
 import simpmusic.composeapp.generated.resources.main_lyrics_provider
 import simpmusic.composeapp.generated.resources.manage_your_youtube_accounts
-import simpmusic.composeapp.generated.resources.maxrave_dev
 import simpmusic.composeapp.generated.resources.monthly
 import simpmusic.composeapp.generated.resources.never
 import simpmusic.composeapp.generated.resources.no_account
@@ -3286,7 +3285,7 @@ fun SettingScreen(
             onDismissRequest = { showAdminControlDialog = false },
             title = {
                 Text(
-                    text = "👑 Admin Control Center",
+                    text = "Admin Control Center",
                     style = typo().titleMedium,
                 )
             },
@@ -3298,12 +3297,12 @@ fun SettingScreen(
                     )
                     Spacer(Modifier.height(14.dp))
                     Text(
-                        text = "How to Control & Push Updates:",
+                        text = "How to Update Application:",
                         style = typo().labelLarge,
                     )
                     Spacer(Modifier.height(4.dp))
                     Text(
-                        text = "1. Pushing new releases to your GitHub repository (Mayurraut3231/ORiON) controls your user updates.\n2. The original developer cannot push any updates to your application.\n3. You have full ownership and admin control over this build.",
+                        text = "1. Open ORiON github repo\n2. click on Releases, you will see latest release\n3. then download the latest application",
                         style = typo().bodySmall,
                     )
                     Spacer(Modifier.height(14.dp))
