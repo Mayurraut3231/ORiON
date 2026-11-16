@@ -354,32 +354,13 @@ private fun PosterSignature(wrapped: WrappedYear) {
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.weight(1f, fill = false),
         )
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(6.dp),
-        ) {
-            Box(
-                modifier =
-                    Modifier
-                        .size(16.dp)
-                        .clip(CircleShape)
-                        .background(MaterialTheme.colorScheme.onSurface),
-                contentAlignment = Alignment.Center,
-            ) {
-                Icon(
-                    painter = painterResource(Res.drawable.mono),
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.surface,
-                    modifier = Modifier.size(10.dp),
-                )
-            }
-            Text(
-                // A brand name, not copy — it is spelled this way in every language, exactly as
-                // the lyrics share card spells it, and set in the same muted weight it uses there.
-                text = "ORiON",
-                style = MaterialTheme.typography.bodySmall,
-            )
-        }
+        Text(
+            text = "ORiON",
+            style = MaterialTheme.typography.labelLarge,
+            color = MaterialTheme.colorScheme.onSurface,
+            fontWeight = FontWeight.Bold,
+            letterSpacing = 1.5.sp,
+        )
     }
 }
 

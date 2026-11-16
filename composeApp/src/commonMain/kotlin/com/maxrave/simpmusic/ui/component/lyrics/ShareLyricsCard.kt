@@ -162,24 +162,11 @@ internal fun ShareCardSignature(
     content: Color,
     background: Color,
 ) {
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        Box(
-            modifier = Modifier.size(14.dp).clip(CircleShape).background(content),
-            contentAlignment = Alignment.Center,
-        ) {
-            Icon(
-                painter = painterResource(Res.drawable.mono),
-                contentDescription = null,
-                tint = background.shareTintOn(content),
-                modifier = Modifier.size(10.dp),
-            )
-        }
-        Spacer(modifier = Modifier.width(6.dp))
-        Text(
-            text = "ORiON",
-            color = content.copy(alpha = 0.68f),
-            fontSize = 10.sp,
-            fontWeight = FontWeight.Medium,
-        )
-    }
+    Text(
+        text = "ORiON",
+        color = content.copy(alpha = 0.82f),
+        fontSize = 11.sp,
+        fontWeight = FontWeight.Bold,
+        letterSpacing = 1.5.sp,
+    )
 }
