@@ -2735,9 +2735,9 @@ fun SettingScreen(
                 )
                 SettingItem(
                     title = stringResource(Res.string.check_for_update),
-                    subtitle = "ORiON is up to date (v1.0.0)",
+                    subtitle = "ORiON v${VersionManager.getVersionName()} - Tap to check",
                     onClick = {
-                        openUrl("https://github.com/Mayurraut3231/ORiON/releases")
+                        viewModel.checkForUpdate()
                     },
                 )
                 SettingItem(

@@ -18,8 +18,8 @@ object VersionManager {
 
     fun getVersionName(): String = removeDevSuffix(versionName ?: String())
 
-    /** Never behind upstream: ORiON controls its own updates */
-    fun isBehind(tag: String): Boolean = false
+    /** True when the given release tag is newer than current app version */
+    fun isBehind(tag: String): Boolean = isNewerRelease(getVersionName(), tag)
 
     private fun removeDevSuffix(versionName: String): String {
         return if (versionName.endsWith("-dev")) {

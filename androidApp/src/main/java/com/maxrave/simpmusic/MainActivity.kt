@@ -308,7 +308,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkForUpdate() {
-        // ORiON: Upstream update checks disabled
+        if (viewModel.shouldCheckForUpdate()) {
+            viewModel.checkForUpdate()
+        }
     }
 
     private fun putString(

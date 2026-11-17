@@ -907,8 +907,8 @@ fun App(
                     )
                 }
 
-                // ORiON: Upstream update dialog permanently disabled
-                if (false && shouldShowUpdateDialog) {
+                // ORiON Update dialog
+                if (shouldShowUpdateDialog) {
                     val response = updateData ?: return@Scaffold
                     AlertDialog(
                         properties =
@@ -925,7 +925,7 @@ fun App(
                                 onClick = {
                                     shouldShowUpdateDialog = false
                                     viewModel.showedUpdateDialog = false
-                                    openUrl("https://simpmusic.org/download")
+                                    openUrl("https://github.com/Mayurraut3231/ORiON/releases")
                                 },
                             ) {
                                 Text(
