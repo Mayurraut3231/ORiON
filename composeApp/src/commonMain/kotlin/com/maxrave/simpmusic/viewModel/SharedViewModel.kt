@@ -1252,14 +1252,7 @@ class SharedViewModel(
                         showedUpdateDialog = true
                     }
                     is Resource.Error -> {
-                        // If GitHub repo does not have a published release yet (404),
-                        // simulate v1.0.0 update so update notification can be tested
-                        _updateResponse.value = UpdateData(
-                            tagName = "v1.0.0",
-                            releaseTime = "2026-11-17T12:00:00Z",
-                            body = "### What's New in ORiON v1.0.0:\n- First official release of ORiON Music\n- Background playback and synced lyrics\n- Full admin control by Mayur Raut",
-                        )
-                        showedUpdateDialog = true
+                        _updateResponse.value = null
                     }
                 }
                 _isCheckingUpdate.value = false
