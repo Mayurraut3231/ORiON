@@ -754,8 +754,8 @@
     <string name="quit_app">Quit app</string>
     <string name="local_tracking_title">Local tracking listening history</string>
     <string name="local_tracking_description">Log your listening history to local database</string>
-    <string name="blog_notification_title">Blog post notifications</string>
-    <string name="blog_notification_description">Get notified when a new blog post is published</string>
+    <string name="blog_notification_title">ORiON Announcements</string>
+    <string name="blog_notification_description">Receive announcements and notices from ORiON</string>
     <string name="simpmusic_charts">ORiON Charts</string>
     <string name="crossfading">Crossfading</string>
     <string name="your_320kbps_url">Your 320kbps URL</string>

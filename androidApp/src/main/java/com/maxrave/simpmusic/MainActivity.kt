@@ -22,6 +22,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.NetworkType
+import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.eygraber.uri.toKmpUriOrNull
@@ -211,7 +212,7 @@ class MainActivity : AppCompatActivity() {
                 if (enabled == DataStoreManager.TRUE) {
                     val rssRequest =
                         PeriodicWorkRequestBuilder<RssFeedNotifyWork>(
-                            24L,
+                            12L,
                             TimeUnit.HOURS,
                         ).addTag("Blog RSS Worker")
                             .setConstraints(
@@ -225,6 +226,17 @@ class MainActivity : AppCompatActivity() {
                         ExistingPeriodicWorkPolicy.KEEP,
                         rssRequest,
                     )
+
+                    // Also check for new announcements immediately on app launch
+                    val oneTimeRequest =
+                        OneTimeWorkRequestBuilder<RssFeedNotifyWork>()
+                            .setConstraints(
+                                Constraints
+                                    .Builder()
+                                    .setRequiredNetworkType(NetworkType.CONNECTED)
+                                    .build(),
+                            ).build()
+                    WorkManager.getInstance(this@MainActivity).enqueue(oneTimeRequest)
                 } else {
                     WorkManager.getInstance(this@MainActivity).cancelUniqueWork("Blog RSS Worker")
                 }

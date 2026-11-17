@@ -342,7 +342,7 @@ fun BlogNotificationItem(notification: NotificationEntity) {
             }
             Spacer(modifier = Modifier.width(12.dp))
             Column(Modifier.padding(end = 56.dp)) {
-                Text(text = "New blog post", style = typo().titleSmall)
+                Text(text = "ORiON Announcement", style = typo().titleSmall)
                 Spacer(modifier = Modifier.height(3.dp))
                 Text(text = notification.name, style = typo().titleMedium)
                 notification.description?.takeIf { it.isNotBlank() }?.let { desc ->

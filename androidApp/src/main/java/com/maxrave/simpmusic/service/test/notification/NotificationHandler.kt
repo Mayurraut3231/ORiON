@@ -126,8 +126,7 @@ object NotificationHandler {
     private const val BLOG_CHANNEL_ID = "blog_updates_channel"
 
     /**
-     * Separate channel so users can silence blog updates without affecting artist-release
-     * notifications.
+     * Notification channel for ORiON announcements and updates.
      */
     fun createBlogNotificationChannel(context: Context) {
         val notificationManager: NotificationManager =
@@ -136,19 +135,17 @@ object NotificationHandler {
             val channel =
                 NotificationChannel(
                     BLOG_CHANNEL_ID,
-                    "Blog updates",
-                    NotificationManager.IMPORTANCE_DEFAULT,
+                    "ORiON Announcements",
+                    NotificationManager.IMPORTANCE_HIGH,
                 ).apply {
-                    description = "Notifies when a new blog post is published"
+                    description = "Notifies when an announcement is posted by ORiON"
                 }
             notificationManager.createNotificationChannel(channel)
         }
     }
 
     /**
-     * Posts a local notification for a new blog post. Tapping opens [url] in the browser
-     * (ACTION_VIEW). No image is loaded — the feed carries no per-item thumbnail.
-     * The notification id is derived from [url] so the same post never stacks duplicates.
+     * Posts a local notification for an announcement from ORiON.
      */
     fun createBlogNotification(
         context: Context,
@@ -156,9 +153,16 @@ object NotificationHandler {
         text: String?,
         url: String,
     ) {
+        createBlogNotificationChannel(context)
         val action =
-            Intent(Intent.ACTION_VIEW, url.toUri()).apply {
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            if (url.startsWith("http://") || url.startsWith("https://")) {
+                Intent(Intent.ACTION_VIEW, url.toUri()).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                }
+            } else {
+                Intent(context, MainActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                }
             }
         val pendingIntent =
             PendingIntent.getActivity(
@@ -174,7 +178,7 @@ object NotificationHandler {
                 .setContentTitle(title)
                 .setContentText(text)
                 .setStyle(NotificationCompat.BigTextStyle().bigText(text))
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
