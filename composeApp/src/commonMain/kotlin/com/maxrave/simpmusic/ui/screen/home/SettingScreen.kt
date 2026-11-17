@@ -2737,7 +2737,7 @@ fun SettingScreen(
                     title = stringResource(Res.string.check_for_update),
                     subtitle = "ORiON v${VersionManager.getVersionName()} - Tap to check",
                     onClick = {
-                        viewModel.checkForUpdate()
+                        sharedViewModel.checkForUpdate()
                     },
                 )
                 SettingItem(
