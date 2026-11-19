@@ -18,12 +18,12 @@ import simpmusic.composeapp.generated.resources.holder_light
 import kotlin.math.min
 import kotlin.math.roundToInt
 
-/** The logo's box inside the square holder art, measured from holder.png: centred, 65.1% wide, 13.0% tall. */
-private const val NOTE_WIDTH = 0.651f
-private const val NOTE_HEIGHT = 0.130f
+/** The logo's box inside the square holder art: centered, 68% wide, 64% tall. */
+private const val NOTE_WIDTH = 0.68f
+private const val NOTE_HEIGHT = 0.64f
 
-/** Least room between the note and any edge, as a share of the frame's shorter side (owner's pick, 2026-10-20). */
-private const val MIN_PADDING = 0.30f
+/** Least room between the logo and any edge, as a share of the frame's shorter side. */
+private const val MIN_PADDING = 0.15f
 
 /**
  * Theme-aware artwork placeholder that fills whatever frame it is drawn in.

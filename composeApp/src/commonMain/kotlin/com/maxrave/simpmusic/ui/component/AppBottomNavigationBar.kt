@@ -44,6 +44,7 @@ import com.maxrave.simpmusic.ui.navigation.destination.home.HomeDestination
 import com.maxrave.simpmusic.ui.navigation.destination.library.LibraryDestination
 import com.maxrave.simpmusic.ui.navigation.destination.library.MixForYouDestination
 import com.maxrave.simpmusic.ui.navigation.destination.search.SearchDestination
+import com.maxrave.simpmusic.ui.theme.LocalIsDarkTheme
 import com.maxrave.simpmusic.ui.theme.typo
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -432,13 +433,15 @@ fun AppNavigationRail(
     // and on the page background on tablets, and must read as part of whatever is behind it.
     NavigationRail(containerColor = Color.Transparent) {
         Spacer(Modifier.height(16.dp))
+        val isDark = LocalIsDarkTheme.current
         Image(
-            painter = painterResource(Res.drawable.circle_app_icon),
+            painter = painterResource(if (isDark) Res.drawable.circle_app_icon else Res.drawable.circle_app_icon_light),
             contentDescription = null,
             modifier =
                 Modifier
                     .padding(horizontal = 16.dp)
-                    .size(48.dp),
+                    .size(48.dp)
+                    .clip(RoundedCornerShape(10.dp)),
         )
         Spacer(Modifier.weight(1f))
         bottomNavScreens.forEach { screen ->

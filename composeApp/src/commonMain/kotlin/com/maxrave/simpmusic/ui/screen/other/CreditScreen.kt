@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalMinimumInteractiveComponentSize
@@ -48,6 +49,7 @@ import com.maxrave.simpmusic.extension.ultraThinBarStyle
 import com.maxrave.simpmusic.ui.component.RippleIconButton
 import com.maxrave.simpmusic.ui.icon.ArrowBackIosNew
 import com.maxrave.simpmusic.ui.icon.SimpIcons
+import com.maxrave.simpmusic.ui.theme.LocalIsDarkTheme
 import com.maxrave.simpmusic.ui.theme.typo
 import com.maxrave.simpmusic.utils.VersionManager
 import com.mikepenz.markdown.m3.Markdown
@@ -79,14 +81,15 @@ fun CreditScreen(
     ) {
         Spacer(modifier = Modifier.height(30.dp))
 
-        // App icon
+        // App icon: Dark logo in dark mode, Light logo in light mode
+        val isDark = LocalIsDarkTheme.current
         Image(
-            painter = painterResource(Res.drawable.app_icon),
+            painter = painterResource(if (isDark) Res.drawable.app_icon else Res.drawable.app_icon_light),
             contentDescription = "App Icon",
             modifier =
                 Modifier
                     .size(150.dp)
-                    .clip(CircleShape),
+                    .clip(RoundedCornerShape(28.dp)),
         )
 
         Spacer(modifier = Modifier.height(30.dp))
