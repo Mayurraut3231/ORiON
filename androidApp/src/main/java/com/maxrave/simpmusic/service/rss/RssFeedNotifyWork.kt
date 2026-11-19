@@ -45,6 +45,7 @@ class RssFeedNotifyWork(
                         val title = item.optString("title", "ORiON Music").trim()
                         val message = item.optString("message", "").trim()
                         val url = item.optString("url", "https://github.com/Mayurraut3231/ORiON").trim()
+                        val imageUrl = item.optString("image", "").trim()
 
                         if (id.isEmpty() || message.isEmpty()) continue
 
@@ -55,6 +56,7 @@ class RssFeedNotifyWork(
                                 title = title,
                                 text = message,
                                 url = url,
+                                imageUrl = if (imageUrl.isNotEmpty()) imageUrl else null,
                             )
                             commonRepository.insertNotification(
                                 NotificationEntity(

@@ -152,10 +152,19 @@ object NotificationHandler {
         title: String,
         text: String?,
         url: String,
+        imageUrl: String? = null,
     ) {
         createBlogNotificationChannel(context)
         val action =
-            if (url.startsWith("http://") || url.startsWith("https://")) {
+            if (url.startsWith("simpmusic://") || url.startsWith("orion://") ||
+                url.contains("youtube.com") || url.contains("youtu.be")
+            ) {
+                Intent(context, MainActivity::class.java).apply {
+                    this.action = Intent.ACTION_VIEW
+                    data = url.toUri()
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                }
+            } else if (url.startsWith("http://") || url.startsWith("https://")) {
                 Intent(Intent.ACTION_VIEW, url.toUri()).apply {
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 }
@@ -171,16 +180,51 @@ object NotificationHandler {
                 action,
                 PendingIntent.FLAG_IMMUTABLE,
             )
-        val largeLogo =
+
+        val remoteImage =
+            if (!imageUrl.isNullOrBlank()) {
+                runBlocking {
+                    try {
+                        val loader = ImageLoader(context)
+                        val request =
+                            ImageRequest
+                                .Builder(context)
+                                .data(imageUrl)
+                                .allowHardware(false)
+                                .build()
+                        when (val result = loader.execute(request)) {
+                            is SuccessResult -> result.image.toBitmap()
+                            else -> null
+                        }
+                    } catch (e: Exception) {
+                        null
+                    }
+                }
+            } else {
+                null
+            }
+
+        val appLogo =
             AppCompatResources.getDrawable(context, R.drawable.app_icon)?.toBitmap(128, 128)
+
         val builder =
             NotificationCompat
                 .Builder(context, BLOG_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notification)
-                .setLargeIcon(largeLogo)
+                .setLargeIcon(remoteImage ?: appLogo)
                 .setContentTitle(title)
                 .setContentText(text)
-                .setStyle(NotificationCompat.BigTextStyle().bigText(text))
+                .apply {
+                    if (remoteImage != null) {
+                        setStyle(
+                            NotificationCompat.BigPictureStyle()
+                                .bigPicture(remoteImage)
+                                .setSummaryText(text),
+                        )
+                    } else {
+                        setStyle(NotificationCompat.BigTextStyle().bigText(text))
+                    }
+                }
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
