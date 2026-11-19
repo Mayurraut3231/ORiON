@@ -77,7 +77,7 @@ object NotificationHandler {
         val builder =
             NotificationCompat
                 .Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.mono)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setContentTitle(noti.name)
                 .setContentText(
                     if (noti.single.isNotEmpty()) {
@@ -86,7 +86,7 @@ object NotificationHandler {
                         "${ComposeResUtils.getResString(ComposeResUtils.StringType.NEW_ALBUMS)}: ${noti.album.joinToString { it.title }}"
                     },
                 ).setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setLargeIcon(bitmap)
+                .setLargeIcon(bitmap ?: AppCompatResources.getDrawable(context, R.drawable.app_icon)?.toBitmap(128, 128))
                 .setContentIntent(pendingIntent) // For launching the MainActivity
                 .setAutoCancel(true) // Remove notification when tapped
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC) // Show on lock screen
@@ -171,10 +171,13 @@ object NotificationHandler {
                 action,
                 PendingIntent.FLAG_IMMUTABLE,
             )
+        val largeLogo =
+            AppCompatResources.getDrawable(context, R.drawable.app_icon)?.toBitmap(128, 128)
         val builder =
             NotificationCompat
                 .Builder(context, BLOG_CHANNEL_ID)
-                .setSmallIcon(R.drawable.mono)
+                .setSmallIcon(R.drawable.ic_notification)
+                .setLargeIcon(largeLogo)
                 .setContentTitle(title)
                 .setContentText(text)
                 .setStyle(NotificationCompat.BigTextStyle().bigText(text))
