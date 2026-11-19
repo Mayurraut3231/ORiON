@@ -2,6 +2,8 @@ package com.maxrave.simpmusic
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.content.ComponentName
+import android.content.pm.PackageManager
 import android.database.CursorWindow
 import android.os.Build
 import android.util.Log
@@ -55,6 +57,17 @@ class SimpMusicApplication :
 
     override fun onCreate() {
         super.onCreate()
+        try {
+            val pm = packageManager
+            val mainComponent = ComponentName(this, MainActivity::class.java)
+            pm.setComponentEnabledSetting(
+                mainComponent,
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP,
+            )
+        } catch (e: Exception) {
+            Logger.e("SimpMusicApplication", "Failed to restore MainActivity component: ${e.message}")
+        }
         // First, so the rest of startup reaches the App log too (Settings → Developer option).
         Logger.enableFileLogging(File(filesDir, "logs").path)
         configCrashlytics(this, BuildKonfig.sentryDsn)
