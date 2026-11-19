@@ -25,6 +25,7 @@ import com.maxrave.domain.manager.DataStoreManager
 import com.maxrave.logger.Logger
 import com.maxrave.simpmusic.di.viewModelModule
 import com.maxrave.simpmusic.service.backup.AutoBackupScheduler
+import com.maxrave.simpmusic.service.rss.AnnouncementScheduler
 import com.maxrave.simpmusic.utils.NetworkFirstInterceptor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -101,6 +102,13 @@ class SimpMusicApplication :
         autoBackupScheduler = AutoBackupScheduler(this, dataStoreManager)
         applicationScope.launch {
             autoBackupScheduler.observeAndSchedule()
+        }
+        applicationScope.launch {
+            dataStoreManager.blogNotificationEnabled.collect { enabled ->
+                if (enabled == DataStoreManager.TRUE) {
+                    AnnouncementScheduler.schedule(this@SimpMusicApplication)
+                }
+            }
         }
 
         CaocConfig.Builder

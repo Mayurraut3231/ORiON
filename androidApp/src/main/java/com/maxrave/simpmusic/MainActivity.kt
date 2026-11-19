@@ -39,6 +39,7 @@ import com.maxrave.domain.mediaservice.handler.ToastType
 import com.maxrave.logger.Logger
 import com.maxrave.media3.di.setServiceActivitySession
 import com.maxrave.simpmusic.di.viewModelModule
+import com.maxrave.simpmusic.service.rss.AnnouncementScheduler
 import com.maxrave.simpmusic.service.rss.RssFeedNotifyWork
 import com.maxrave.simpmusic.service.test.notification.NotifyWork
 import com.maxrave.simpmusic.utils.ComposeResUtils
@@ -223,35 +224,10 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             dataStoreManager.blogNotificationEnabled.collect { enabled ->
                 if (enabled == DataStoreManager.TRUE) {
-                    val rssRequest =
-                        PeriodicWorkRequestBuilder<RssFeedNotifyWork>(
-                            12L,
-                            TimeUnit.HOURS,
-                        ).addTag("Blog RSS Worker")
-                            .setConstraints(
-                                Constraints
-                                    .Builder()
-                                    .setRequiredNetworkType(NetworkType.CONNECTED)
-                                    .build(),
-                            ).build()
-                    WorkManager.getInstance(this@MainActivity).enqueueUniquePeriodicWork(
-                        "Blog RSS Worker",
-                        ExistingPeriodicWorkPolicy.KEEP,
-                        rssRequest,
-                    )
-
-                    // Also check for new announcements immediately on app launch
-                    val oneTimeRequest =
-                        OneTimeWorkRequestBuilder<RssFeedNotifyWork>()
-                            .setConstraints(
-                                Constraints
-                                    .Builder()
-                                    .setRequiredNetworkType(NetworkType.CONNECTED)
-                                    .build(),
-                            ).build()
-                    WorkManager.getInstance(this@MainActivity).enqueue(oneTimeRequest)
+                    AnnouncementScheduler.schedule(this@MainActivity)
+                    AnnouncementScheduler.triggerImmediateCheck(this@MainActivity)
                 } else {
-                    WorkManager.getInstance(this@MainActivity).cancelUniqueWork("Blog RSS Worker")
+                    AnnouncementScheduler.cancel(this@MainActivity)
                 }
             }
         }
