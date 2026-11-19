@@ -208,16 +208,19 @@ class MainActivity : AppCompatActivity() {
             ExistingPeriodicWorkPolicy.KEEP,
             request,
         )
-        try {
-            val pm = packageManager
-            val mainComponent = ComponentName(this, MainActivity::class.java)
-            pm.setComponentEnabledSetting(
-                mainComponent,
-                PackageManager.COMPONENT_ENABLED_STATE_DEFAULT,
-                PackageManager.DONT_KILL_APP,
-            )
-        } catch (e: Exception) {
-            Logger.e("MainActivity", "Failed to restore MainActivity component: ${e.message}")
+        lifecycleScope.launch {
+            dataStoreManager.themeMode.collect { mode ->
+                val isDark =
+                    when (mode) {
+                        DataStoreManager.THEME_MODE_LIGHT -> false
+                        DataStoreManager.THEME_MODE_SYSTEM -> {
+                            val nightModeFlags = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+                            nightModeFlags == Configuration.UI_MODE_NIGHT_YES
+                        }
+                        else -> true
+                    }
+                updateLauncherIcon(isDark)
+            }
         }
 
         lifecycleScope.launch {
@@ -346,6 +349,36 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getString(key: String): String? = viewModel.getString(key)
+
+    private fun updateLauncherIcon(isDark: Boolean) {
+        try {
+            val pm = packageManager
+            val mainComponent = ComponentName(this, MainActivity::class.java)
+            val lightAlias = ComponentName(this, "${packageName}.MainActivityLight")
+
+            val mainState =
+                if (isDark) {
+                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+                } else {
+                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED
+                }
+            val lightState =
+                if (isDark) {
+                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED
+                } else {
+                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+                }
+
+            if (pm.getComponentEnabledSetting(mainComponent) != mainState) {
+                pm.setComponentEnabledSetting(mainComponent, mainState, PackageManager.DONT_KILL_APP)
+            }
+            if (pm.getComponentEnabledSetting(lightAlias) != lightState) {
+                pm.setComponentEnabledSetting(lightAlias, lightState, PackageManager.DONT_KILL_APP)
+            }
+        } catch (e: Exception) {
+            Logger.e("MainActivity", "Failed to update launcher icon: ${e.message}")
+        }
+    }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
