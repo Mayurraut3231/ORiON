@@ -441,7 +441,7 @@ fun AppNavigationRail(
                 Modifier
                     .padding(horizontal = 16.dp)
                     .size(48.dp)
-                    .clip(RoundedCornerShape(10.dp)),
+                    .clip(CircleShape),
         )
         Spacer(Modifier.weight(1f))
         bottomNavScreens.forEach { screen ->

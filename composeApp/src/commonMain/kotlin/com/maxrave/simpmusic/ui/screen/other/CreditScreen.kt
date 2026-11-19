@@ -89,7 +89,7 @@ fun CreditScreen(
             modifier =
                 Modifier
                     .size(150.dp)
-                    .clip(RoundedCornerShape(28.dp)),
+                    .clip(CircleShape),
         )
 
         Spacer(modifier = Modifier.height(30.dp))
