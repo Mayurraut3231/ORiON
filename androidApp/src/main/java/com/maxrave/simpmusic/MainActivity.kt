@@ -39,6 +39,7 @@ import com.maxrave.domain.mediaservice.handler.ToastType
 import com.maxrave.logger.Logger
 import com.maxrave.media3.di.setServiceActivitySession
 import com.maxrave.simpmusic.di.viewModelModule
+import com.maxrave.simpmusic.service.engagement.MusicEngagementScheduler
 import com.maxrave.simpmusic.service.rss.AnnouncementScheduler
 import com.maxrave.simpmusic.service.rss.RssFeedNotifyWork
 import com.maxrave.simpmusic.service.test.notification.NotifyWork
@@ -226,8 +227,11 @@ class MainActivity : AppCompatActivity() {
                 if (enabled == DataStoreManager.TRUE) {
                     AnnouncementScheduler.schedule(this@MainActivity)
                     AnnouncementScheduler.triggerImmediateCheck(this@MainActivity)
+                    MusicEngagementScheduler.schedule(this@MainActivity)
+                    MusicEngagementScheduler.triggerImmediateCheck(this@MainActivity)
                 } else {
                     AnnouncementScheduler.cancel(this@MainActivity)
+                    MusicEngagementScheduler.cancel(this@MainActivity)
                 }
             }
         }

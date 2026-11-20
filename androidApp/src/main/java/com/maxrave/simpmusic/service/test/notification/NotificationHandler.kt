@@ -240,4 +240,122 @@ object NotificationHandler {
             notify(url.hashCode(), builder.build())
         }
     }
+
+    private const val MUSIC_CHANNEL_ID = "music_engagement_channel"
+
+    /**
+     * Notification channel for ORiON music recommendations, mashups, and playlist discoveries.
+     */
+    fun createMusicNotificationChannel(context: Context) {
+        val notificationManager: NotificationManager =
+            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (notificationManager.getNotificationChannel(MUSIC_CHANNEL_ID) == null) {
+            val channel =
+                NotificationChannel(
+                    MUSIC_CHANNEL_ID,
+                    "Music Recommendations & Discovery",
+                    NotificationManager.IMPORTANCE_HIGH,
+                ).apply {
+                    description = "Personalized daily mixes, trending mashups, and playlist recommendations from ORiON"
+                }
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    /**
+     * Posts a local notification recommending music, mashup releases, or playlists.
+     */
+    fun createMusicNotification(
+        context: Context,
+        title: String,
+        text: String?,
+        url: String,
+        imageUrl: String? = null,
+    ) {
+        createMusicNotificationChannel(context)
+        val action =
+            if (url.startsWith("simpmusic://") || url.startsWith("orion://") ||
+                url.contains("youtube.com") || url.contains("youtu.be")
+            ) {
+                Intent(context, MainActivity::class.java).apply {
+                    this.action = Intent.ACTION_VIEW
+                    data = url.toUri()
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                }
+            } else if (url.startsWith("http://") || url.startsWith("https://")) {
+                Intent(Intent.ACTION_VIEW, url.toUri()).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                }
+            } else {
+                Intent(context, MainActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                }
+            }
+        val pendingIntent =
+            PendingIntent.getActivity(
+                context,
+                url.hashCode(),
+                action,
+                PendingIntent.FLAG_IMMUTABLE,
+            )
+
+        val remoteImage =
+            if (!imageUrl.isNullOrBlank()) {
+                runBlocking {
+                    try {
+                        val loader = ImageLoader(context)
+                        val request =
+                            ImageRequest
+                                .Builder(context)
+                                .data(imageUrl)
+                                .allowHardware(false)
+                                .build()
+                        when (val result = loader.execute(request)) {
+                            is SuccessResult -> result.image.toBitmap()
+                            else -> null
+                        }
+                    } catch (e: Exception) {
+                        null
+                    }
+                }
+            } else {
+                null
+            }
+
+        val appLogo =
+            AppCompatResources.getDrawable(context, R.drawable.app_icon)?.toBitmap(128, 128)
+
+        val builder =
+            NotificationCompat
+                .Builder(context, MUSIC_CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_notification)
+                .setLargeIcon(remoteImage ?: appLogo)
+                .setContentTitle(title)
+                .setContentText(text)
+                .apply {
+                    if (remoteImage != null) {
+                        setStyle(
+                            NotificationCompat.BigPictureStyle()
+                                .bigPicture(remoteImage)
+                                .setSummaryText(text),
+                        )
+                    } else {
+                        setStyle(NotificationCompat.BigTextStyle().bigText(text))
+                    }
+                }
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+        with(NotificationManagerCompat.from(context)) {
+            if (ActivityCompat.checkSelfPermission(
+                    context,
+                    Manifest.permission.POST_NOTIFICATIONS,
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                return
+            }
+            notify(url.hashCode(), builder.build())
+        }
+    }
 }

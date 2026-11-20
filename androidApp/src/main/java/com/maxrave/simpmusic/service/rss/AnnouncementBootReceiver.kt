@@ -3,6 +3,7 @@ package com.maxrave.simpmusic.service.rss
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import com.maxrave.simpmusic.service.engagement.MusicEngagementScheduler
 
 class AnnouncementBootReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
@@ -13,6 +14,7 @@ class AnnouncementBootReceiver : BroadcastReceiver() {
         ) {
             AnnouncementScheduler.schedule(context)
             AnnouncementScheduler.triggerImmediateCheck(context)
+            MusicEngagementScheduler.schedule(context)
         }
     }
 }

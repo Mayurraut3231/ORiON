@@ -379,6 +379,14 @@ fun App(
                         }
                     }
 
+                    "search" -> {
+                        navController.navigate(SearchDestination) { launchSingleTop = true }
+                    }
+
+                    "home" -> {
+                        navController.navigate(HomeDestination) { launchSingleTop = true }
+                    }
+
                     else -> {
                         viewModel.makeToast(getString(Res.string.this_link_is_not_supported))
                     }

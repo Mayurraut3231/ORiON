@@ -25,6 +25,7 @@ import com.maxrave.domain.manager.DataStoreManager
 import com.maxrave.logger.Logger
 import com.maxrave.simpmusic.di.viewModelModule
 import com.maxrave.simpmusic.service.backup.AutoBackupScheduler
+import com.maxrave.simpmusic.service.engagement.MusicEngagementScheduler
 import com.maxrave.simpmusic.service.rss.AnnouncementScheduler
 import com.maxrave.simpmusic.utils.NetworkFirstInterceptor
 import kotlinx.coroutines.CoroutineScope
@@ -107,6 +108,7 @@ class SimpMusicApplication :
             dataStoreManager.blogNotificationEnabled.collect { enabled ->
                 if (enabled == DataStoreManager.TRUE) {
                     AnnouncementScheduler.schedule(this@SimpMusicApplication)
+                    MusicEngagementScheduler.schedule(this@SimpMusicApplication)
                 }
             }
         }
