@@ -25,8 +25,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -67,8 +69,12 @@ import com.maxrave.domain.data.player.GenericMediaItem
 import com.maxrave.domain.manager.DataStoreManager
 import com.maxrave.domain.manager.DataStoreManager.Values.TRUE
 import com.maxrave.logger.Logger
+import com.maxrave.simpmusic.expect.DownloadUpdateState
 import com.maxrave.simpmusic.expect.Orientation
 import com.maxrave.simpmusic.expect.currentOrientation
+import com.maxrave.simpmusic.expect.downloadAndInstallUpdate
+import com.maxrave.simpmusic.expect.exitApplication
+import com.maxrave.simpmusic.expect.installDownloadedApk
 import com.maxrave.simpmusic.expect.openUrl
 import com.maxrave.simpmusic.expect.ui.layerBackdrop
 import com.maxrave.simpmusic.expect.ui.rememberBackdrop
@@ -207,6 +213,10 @@ fun App(
 
     var shouldShowUpdateDialog by rememberSaveable {
         mutableStateOf(false)
+    }
+
+    var updateDownloadState by remember {
+        mutableStateOf<DownloadUpdateState>(DownloadUpdateState.Idle)
     }
 
     // Every dialog this file raises on its own. Home's launch banner waits until none is up; see
@@ -459,7 +469,8 @@ fun App(
         // Only a NEWER release is offered. This used to compare the tags for inequality, which told a
         // build ahead of the latest release (dev, beta) to "update" back down to it, and told every
         // F-Droid-channel user to update on each launch: that channel's tag carries no leading "v".
-        if (viewModel.showedUpdateDialog && VersionManager.isBehind(response.tagName)) {
+        // Mandatory Update: Whenever a newer release is detected, strictly enforce the update barrier
+        if (VersionManager.isBehind(response.tagName)) {
             shouldShowUpdateDialog = true
         }
     }
@@ -915,7 +926,7 @@ fun App(
                     )
                 }
 
-                // ORiON Update dialog
+                // ORiON Mandatory Update dialog
                 if (shouldShowUpdateDialog) {
                     val response = updateData ?: return@Scaffold
                     AlertDialog(
@@ -925,116 +936,190 @@ fun App(
                                 dismissOnClickOutside = false,
                             ),
                         onDismissRequest = {
-                            shouldShowUpdateDialog = false
-                            viewModel.showedUpdateDialog = false
+                            // Non-dismissible: update is strictly mandatory to enter the application
                         },
                         confirmButton = {
-                            TextButton(
-                                onClick = {
-                                    shouldShowUpdateDialog = false
-                                    viewModel.showedUpdateDialog = false
-                                    openUrl("https://github.com/Mayurraut3231/ORiON/releases")
-                                },
-                            ) {
-                                Text(
-                                    stringResource(Res.string.download),
-                                    style = typo().bodySmall,
-                                )
+                            when (val state = updateDownloadState) {
+                                is DownloadUpdateState.Idle -> {
+                                    Button(
+                                        onClick = {
+                                            downloadAndInstallUpdate(
+                                                downloadUrl = response.downloadUrl
+                                                    ?: "https://github.com/Mayurraut3231/ORiON/releases/latest",
+                                                versionName = response.tagName,
+                                                onProgress = { updateDownloadState = it },
+                                            )
+                                        },
+                                    ) {
+                                        Text(
+                                            "Update Now",
+                                            style = typo().bodySmall,
+                                        )
+                                    }
+                                }
+                                is DownloadUpdateState.Downloading -> {
+                                    Button(
+                                        onClick = {},
+                                        enabled = false,
+                                    ) {
+                                        val percent = (state.progress * 100).toInt()
+                                        Text(
+                                            if (percent > 0) "Downloading $percent%" else "Downloading...",
+                                            style = typo().bodySmall,
+                                        )
+                                    }
+                                }
+                                is DownloadUpdateState.ReadyToInstall -> {
+                                    Button(
+                                        onClick = {
+                                            installDownloadedApk(state.filePath)
+                                        },
+                                    ) {
+                                        Text(
+                                            "Install Update",
+                                            style = typo().bodySmall,
+                                        )
+                                    }
+                                }
+                                is DownloadUpdateState.Error -> {
+                                    Button(
+                                        onClick = {
+                                            downloadAndInstallUpdate(
+                                                downloadUrl = response.downloadUrl
+                                                    ?: "https://github.com/Mayurraut3231/ORiON/releases/latest",
+                                                versionName = response.tagName,
+                                                onProgress = { updateDownloadState = it },
+                                            )
+                                        },
+                                    ) {
+                                        Text(
+                                            "Retry Download",
+                                            style = typo().bodySmall,
+                                        )
+                                    }
+                                }
                             }
                         },
                         dismissButton = {
                             TextButton(
                                 onClick = {
-                                    shouldShowUpdateDialog = false
-                                    viewModel.showedUpdateDialog = false
+                                    exitApplication()
                                 },
                             ) {
                                 Text(
-                                    stringResource(Res.string.cancel),
+                                    "Exit App",
                                     style = typo().bodySmall,
+                                    color = MaterialTheme.colorScheme.error,
                                 )
                             }
                         },
                         title = {
                             Text(
-                                stringResource(Res.string.update_available),
+                                "Update Required",
                                 style = typo().labelSmall,
                             )
                         },
                         text = {
-                            val formatted =
-                                response.releaseTime?.let { input ->
-                                    try {
-                                        val instant = kotlin.time.Instant.parse(input)
-                                        val dateTime = instant.toLocalDateTime(TimeZone.currentSystemDefault())
-                                        dateTime.format(
-                                            LocalDateTime.Format {
-                                                day()
-                                                char(' ')
-                                                monthName(MonthNames.ENGLISH_ABBREVIATED)
-                                                char(' ')
-                                                year()
-                                                char(' ')
-                                                hour()
-                                                char(':')
-                                                minute()
-                                                char(':')
-                                                second()
-                                            },
-                                        )
-                                    } catch (e: Exception) {
-                                        stringResource(Res.string.unknown)
-                                    }
-                                } ?: stringResource(Res.string.unknown)
-
-                            val updateMessage =
-                                runBlocking {
-                                    getString(
-                                        Res.string.update_message,
-                                        response.tagName,
-                                        formatted,
-                                        // values-iw/values-in still carry an old %3$s; Compose Resources indexes
-                                        // args without a bounds check, so omitting it crashes the dialog
-                                        "",
-                                    )
-                                }
                             Column(
                                 Modifier
-                                    .heightIn(
-                                        max = 400.dp,
-                                    ).verticalScroll(
-                                        rememberScrollState(),
-                                    ),
+                                    .heightIn(max = 400.dp)
+                                    .verticalScroll(rememberScrollState()),
                             ) {
                                 Text(
-                                    text = updateMessage,
-                                    style = typo().labelMedium,
-                                    modifier =
-                                        Modifier.padding(
-                                            vertical = 8.dp,
-                                        ),
+                                    text = "A new version of ORiON (${response.tagName}) is required to continue. Please update now to access the app.",
+                                    style = typo().bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    modifier = Modifier.padding(bottom = 8.dp),
                                 )
-                                Markdown(
-                                    response.body,
-                                    typography =
-                                        markdownTypography(
-                                            h1 = typo().labelLarge,
-                                            h2 = typo().labelMedium,
-                                            h3 = typo().labelSmall,
-                                            text = typo().bodySmall,
-                                            bullet = typo().bodySmall,
-                                            paragraph = typo().bodySmall,
-                                            textLink =
-                                                TextLinkStyles(
-                                                    SpanStyle(
-                                                        fontSize = 11.sp,
-                                                        fontWeight = FontWeight.Normal,
-                                                        fontFamily = fontFamily(),
-                                                        textDecoration = TextDecoration.Underline,
+
+                                when (val state = updateDownloadState) {
+                                    is DownloadUpdateState.Downloading -> {
+                                        Spacer(Modifier.height(8.dp))
+                                        LinearProgressIndicator(
+                                            progress = { state.progress },
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .height(8.dp)
+                                                .clip(RoundedCornerShape(4.dp)),
+                                        )
+                                        Spacer(Modifier.height(6.dp))
+                                        val mbDownloaded = state.downloadedBytes / (1024.0 * 1024.0)
+                                        val mbTotal = state.totalBytes / (1024.0 * 1024.0)
+                                        val progressText = if (state.totalBytes > 0) {
+                                            "Downloading: ${(state.progress * 100).toInt()}% (${(mbDownloaded * 10).toInt() / 10.0} MB / ${(mbTotal * 10).toInt() / 10.0} MB)"
+                                        } else {
+                                            "Downloading: ${(mbDownloaded * 10).toInt() / 10.0} MB"
+                                        }
+                                        Text(
+                                            text = progressText,
+                                            style = typo().bodySmall,
+                                            color = MaterialTheme.colorScheme.primary,
+                                        )
+                                        Spacer(Modifier.height(8.dp))
+                                    }
+                                    is DownloadUpdateState.ReadyToInstall -> {
+                                        Spacer(Modifier.height(8.dp))
+                                        Text(
+                                            text = "Download complete! Opening installer...",
+                                            style = typo().bodySmall,
+                                            color = MaterialTheme.colorScheme.primary,
+                                            fontWeight = FontWeight.Bold,
+                                        )
+                                        Spacer(Modifier.height(8.dp))
+                                    }
+                                    is DownloadUpdateState.Error -> {
+                                        Spacer(Modifier.height(8.dp))
+                                        Text(
+                                            text = "Download failed: ${state.message}",
+                                            style = typo().bodySmall,
+                                            color = MaterialTheme.colorScheme.error,
+                                        )
+                                        Spacer(Modifier.height(4.dp))
+                                        TextButton(
+                                            onClick = {
+                                                openUrl(response.downloadUrl ?: "https://github.com/Mayurraut3231/ORiON/releases/latest")
+                                            },
+                                        ) {
+                                            Text(
+                                                "Download via Browser",
+                                                style = typo().bodySmall,
+                                            )
+                                        }
+                                        Spacer(Modifier.height(8.dp))
+                                    }
+                                    is DownloadUpdateState.Idle -> {}
+                                }
+
+                                if (response.body.isNotBlank()) {
+                                    Spacer(Modifier.height(8.dp))
+                                    Text(
+                                        text = "What's New:",
+                                        style = typo().labelSmall,
+                                        fontWeight = FontWeight.SemiBold,
+                                        modifier = Modifier.padding(bottom = 4.dp),
+                                    )
+                                    Markdown(
+                                        response.body,
+                                        typography =
+                                            markdownTypography(
+                                                h1 = typo().labelLarge,
+                                                h2 = typo().labelMedium,
+                                                h3 = typo().labelSmall,
+                                                text = typo().bodySmall,
+                                                bullet = typo().bodySmall,
+                                                paragraph = typo().bodySmall,
+                                                textLink =
+                                                    TextLinkStyles(
+                                                        SpanStyle(
+                                                            fontSize = 11.sp,
+                                                            fontWeight = FontWeight.Normal,
+                                                            fontFamily = fontFamily(),
+                                                            textDecoration = TextDecoration.Underline,
+                                                        ),
                                                     ),
-                                                ),
-                                        ),
-                                )
+                                            ),
+                                    )
+                                }
                             }
                         },
                     )
