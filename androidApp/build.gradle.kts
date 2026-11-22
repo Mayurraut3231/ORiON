@@ -203,8 +203,8 @@ dependencies {
 }
 
 sentry {
-    org.set("simpmusic")
-    projectName.set("android")
+    org.set("orion-ww")
+    projectName.set("kotlin")
     ignoredFlavors.set(setOf("foss"))
     ignoredBuildTypes.set(setOf("debug"))
     autoInstallation.enabled = false

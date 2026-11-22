@@ -850,10 +850,11 @@ buildkonfig {
                 println("Full build detected, enabling Sentry DSN")
                 val properties = Properties()
                 properties.load(rootProject.file("local.properties").inputStream())
+                val defaultSentryDsn = "https://02f839f3bc9e1acab2157c6d1fcd293a@o4512475374878720.ingest.us.sentry.io/4512475379269632"
                 buildConfigField(
                     STRING,
                     "sentryDsn",
-                    properties.getProperty("SENTRY_DSN") ?: "",
+                    properties.getProperty("SENTRY_DSN") ?: defaultSentryDsn,
                 )
                 buildConfigField(
                     STRING,
@@ -872,7 +873,7 @@ buildkonfig {
                 )
             } catch (e: Exception) {
                 println("Failed to load secrets from local.properties: ${e.message}")
-                buildConfigField(STRING, "sentryDsn", "")
+                buildConfigField(STRING, "sentryDsn", "https://02f839f3bc9e1acab2157c6d1fcd293a@o4512475374878720.ingest.us.sentry.io/4512475379269632")
                 buildConfigField(STRING, "lastfmApiKey", "")
                 buildConfigField(STRING, "lastfmSecret", "")
                 buildConfigField(STRING, "discordClientId", "")
