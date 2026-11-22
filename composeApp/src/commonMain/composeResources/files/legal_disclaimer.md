@@ -19,3 +19,15 @@ Because we do not host any media files, we cannot process DMCA takedown requests
 
 ### 6. My Introduction
 I am Mayur i am doing my Bachelors in Computer now i am currently in third year
+
+### 7. TEAM
+- Prachi Shinde - UI Design, Crashlytics, Testing
+- Anushri Jadhav - ROOM/SQLite, Testing
+- Vivek Patil - CipherSolver, Testing
+- Charudatta Karale - Equalizer Preset, Testing, Marketing, Advisor
+- Yashraj Wayase - Logo Suggestion, Testing, Marketing
+- Tejas Pawar - Logo Suggestion, Testing, Marketing
+- Rushi Kotkar - Testing, Marketing
+- Sanket Patil - Testing, Marketing
+
+

@@ -68,7 +68,7 @@ class SimpMusicApplication :
                 PackageManager.DONT_KILL_APP,
             )
         } catch (e: Exception) {
-            Logger.e("SimpMusicApplication", "Failed to restore MainActivity component: ${e.message}")
+            Logger.e("ORiONApplication", "Failed to restore MainActivity component: ${e.message}")
         }
         // First, so the rest of startup reaches the App log too (Settings → Developer option).
         Logger.enableFileLogging(File(filesDir, "logs").path)

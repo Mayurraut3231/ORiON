@@ -4609,13 +4609,13 @@
         },
         {
             "uniqueId": "com.mikepenz:aboutlibraries-compose-m3",
-            "artifactVersion": "15.3.0",
-            "name": "AboutLibraries Compose Material 3 Library",
-            "description": "AboutLibraries automatically detects all dependencies of a project and collects their information including the license. Optionally visualising it via the provided ui components.",
-            "website": "https://github.com/mikepenz/AboutLibraries",
+            "artifactVersion": "v1.0.0",
+            "name": "Equilizer Preset",
+            "description": "Game Developer",
+            "website": "",
             "developers": [
                 {
-                    "name": "Mike Penz"
+                    "name": "Charudatta karale"
                 }
             ],
             "scm": {

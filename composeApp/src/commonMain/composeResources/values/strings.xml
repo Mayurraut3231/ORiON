@@ -306,7 +306,7 @@
     <string name="older_first">Older First</string>
     <string name="newer_first">Newer First</string>
     <string name="added_date">Added date</string>
-    <string name="credit_app">A simple music app using YouTube Music for backend \n\nORiON is an open source project to stream music from YouTube and YouTube Music without ads and tracking. ORiON provides many features:\n\n - Streaming music \n - Synced lyrics\n - Personalize data\n - etc… \n\nORiON is always free and no ads\n\nBuild By Mayur Raut</string>
+    <string name="credit_app">music app using YouTube Music for backend \n\nORiON is an open source project to stream music from YouTube and YouTube Music without ads and tracking. ORiON provides many features:\n\n - Streaming music \n - Synced lyrics\n - Personalize data\n - etc… \n\nORiON is always free and no ads\n\nBuild By Mayur Raut</string>
     <string name="issue_tracker">Issue Tracker</string>
     <string name="copyright" translatable="false">©2026-%1$s Mayur Raut</string>
     <string name="featured_playlists">Featured Playlists</string>

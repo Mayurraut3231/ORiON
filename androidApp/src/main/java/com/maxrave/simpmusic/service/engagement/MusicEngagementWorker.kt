@@ -63,7 +63,7 @@ class MusicEngagementWorker(
                         candidates.add(
                             CandidateNotification(
                                 id = "recall_${pick.videoId}_$dateStr",
-                                title = "🎧 Time for Music",
+                                title = "Time for Music",
                                 message = "Continue listening to \"${pick.title}\" by $artist on ORiON.",
                                 url = "simpmusic://watch?v=${pick.videoId}",
                                 imageUrl = pick.thumbnails,
@@ -72,7 +72,7 @@ class MusicEngagementWorker(
                         candidates.add(
                             CandidateNotification(
                                 id = "favorites_${pick.videoId}_$dateStr",
-                                title = "🎵 Back in the Groove",
+                                title = "Back in the Groove",
                                 message = "\"${pick.title}\" is waiting for you in your library. Tap to play!",
                                 url = "simpmusic://watch?v=${pick.videoId}",
                                 imageUrl = pick.thumbnails,

@@ -1412,11 +1412,11 @@ class SharedViewModel(
                                     ).collectLatest {
                                         when (it) {
                                             is Resource.Error -> {
-                                                Logger.w(tag, "Vote SimpMusic Translated Lyrics Error ${it.message}")
+                                                Logger.w(tag, "Vote ORiON Translated Lyrics Error ${it.message}")
                                             }
 
                                             is Resource.Success -> {
-                                                Logger.d(tag, "Vote SimpMusic Translated Lyrics Success")
+                                                Logger.d(tag, "Vote ORiON Translated Lyrics Success")
                                             }
                                         }
                                     }
@@ -1470,11 +1470,11 @@ class SharedViewModel(
                                 ).collect {
                                     when (it) {
                                         is Resource.Error -> {
-                                            log("Insert SimpMusic Translated Lyrics Error ${it.message}", LogLevel.WARN)
+                                            log("Insert ORiON Translated Lyrics Error ${it.message}", LogLevel.WARN)
                                         }
 
                                         is Resource.Success -> {
-                                            log("Insert SimpMusic Translated Lyrics Success")
+                                            log("Insert ORiON Translated Lyrics Success")
                                         }
                                     }
                                 }
@@ -1522,11 +1522,11 @@ class SharedViewModel(
                                 ).collect {
                                     when (it) {
                                         is Resource.Error -> {
-                                            Logger.w(tag, "Insert SimpMusic Lyrics Error ${it.message}")
+                                            Logger.w(tag, "Insert ORiON Lyrics Error ${it.message}")
                                         }
 
                                         is Resource.Success -> {
-                                            Logger.d(tag, "Insert SimpMusic Lyrics Success")
+                                            Logger.d(tag, "Insert ORiON Lyrics Success")
                                         }
                                     }
                                 }
@@ -1613,10 +1613,10 @@ class SharedViewModel(
         duration: Int,
     ) {
         lyricsCanvasRepository.getSimpMusicLyrics(videoId).collectLatest {
-            Logger.d(tag, "Get SimpMusic Lyrics for $videoId: ${it::class.simpleName}")
+            Logger.d(tag, "Get ORiON Lyrics for $videoId: ${it::class.simpleName}")
             val data = it.data
             if (it is Resource.Success && data != null) {
-                Logger.d(tag, "Get SimpMusic Lyrics Success")
+                Logger.d(tag, "Get ORiON Lyrics Success")
                 updateLyrics(
                     videoId,
                     duration,
@@ -1802,10 +1802,10 @@ class SharedViewModel(
             val data = response.data
             when (response) {
                 is Resource.Success if (data != null) -> {
-                    // If SimpMusic translated lyrics are RICH_SYNCED (word-by-word),
+                    // If ORiON translated lyrics are RICH_SYNCED (word-by-word),
                     // convert to LINE_SYNCED, downvote, and fallback to AI translation
                     if (data.syncType == "RICH_SYNCED") {
-                        Logger.w(tag, "SimpMusic translated lyrics are RICH_SYNCED, downvoting and falling back to AI")
+                        Logger.w(tag, "ORiON translated lyrics are RICH_SYNCED, downvoting and falling back to AI")
                         val simpMusicLyricsId = data.simpMusicLyrics?.id
                         if (!simpMusicLyricsId.isNullOrEmpty()) {
                             viewModelScope.launch {
@@ -1822,7 +1822,7 @@ class SharedViewModel(
                         // Fallback to AI translation
                         getAITranslationLyrics(videoId, lyrics)
                     } else {
-                        Logger.d(tag, "Get SimpMusic Translated Lyrics Success")
+                        Logger.d(tag, "Get ORiON Translated Lyrics Success")
                         updateLyrics(
                             videoId,
                             0,
@@ -1834,7 +1834,7 @@ class SharedViewModel(
                 }
 
                 else -> {
-                    Logger.d(tag, "Get SimpMusic Translated Lyrics Error: ${response.message}")
+                    Logger.d(tag, "Get ORiON Translated Lyrics Error: ${response.message}")
                     getAITranslationLyrics(
                         videoId,
                         lyrics,
@@ -2213,7 +2213,7 @@ class SharedViewModel(
         val simpMusicLyricsId = lyricsData?.lyrics?.simpMusicLyrics?.id ?: return
 
         if (lyricsProvider != LyricsProvider.SIMPMUSIC || simpMusicLyricsId.isEmpty()) {
-            Logger.w(tag, "Cannot vote: not a SimpMusic lyrics or missing ID")
+            Logger.w(tag, "Cannot vote: not an ORiON lyrics or missing ID")
             return
         }
 
@@ -2230,7 +2230,7 @@ class SharedViewModel(
                 ).collectLatest { result ->
                     when (result) {
                         is Resource.Error -> {
-                            Logger.w(tag, "Vote SimpMusic Lyrics Error ${result.message}")
+                            Logger.w(tag, "Vote ORiON Lyrics Error ${result.message}")
                             _lyricsVoteState.update {
                                 it?.copy(
                                     state = VoteState.Error(result.message ?: "Unknown error"),
@@ -2239,7 +2239,7 @@ class SharedViewModel(
                         }
 
                         is Resource.Success -> {
-                            Logger.d(tag, "Vote SimpMusic Lyrics Success")
+                            Logger.d(tag, "Vote ORiON Lyrics Success")
                             _lyricsVoteState.update {
                                 it?.copy(
                                     state = VoteState.Success(upvote),
@@ -2268,7 +2268,7 @@ class SharedViewModel(
         val simpMusicLyricsId = translatedLyrics?.first?.simpMusicLyrics?.id ?: return
 
         if (lyricsProvider != LyricsProvider.SIMPMUSIC || simpMusicLyricsId.isEmpty()) {
-            Logger.w(tag, "Cannot vote: not a SimpMusic translated lyrics or missing ID")
+            Logger.w(tag, "Cannot vote: not an ORiON translated lyrics or missing ID")
             return
         }
 
@@ -2285,7 +2285,7 @@ class SharedViewModel(
                 ).collectLatest { result ->
                     when (result) {
                         is Resource.Error -> {
-                            Logger.w(tag, "Vote SimpMusic Translated Lyrics Error ${result.message}")
+                            Logger.w(tag, "Vote ORiON Translated Lyrics Error ${result.message}")
                             _translatedVoteState.update {
                                 it?.copy(
                                     state = VoteState.Error(result.message ?: "Unknown error"),
@@ -2294,7 +2294,7 @@ class SharedViewModel(
                         }
 
                         is Resource.Success -> {
-                            Logger.d(tag, "Vote SimpMusic Translated Lyrics Success")
+                            Logger.d(tag, "Vote ORiON Translated Lyrics Success")
                             _translatedVoteState.update {
                                 it?.copy(
                                     state = VoteState.Success(upvote),

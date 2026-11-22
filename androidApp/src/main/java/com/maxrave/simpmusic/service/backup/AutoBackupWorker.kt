@@ -54,7 +54,7 @@ class AutoBackupWorker(
             // Create temp backup file
             val tempBackupFile = createBackupFile(backupDownloaded)
 
-            // Save to Downloads/SimpMusic folder
+            // Save to Downloads/ORiON folder
             val success = saveToDownloads(tempBackupFile)
 
             // Delete temp file
@@ -151,14 +151,14 @@ class AutoBackupWorker(
 
     private fun saveToDownloads(backupFile: File): Boolean {
         val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
-        val fileName = "simpmusic_backup_$timestamp.zip"
+        val fileName = "orion_backup_$timestamp.zip"
 
         return try {
             val contentValues = ContentValues().apply {
                 put(MediaStore.Downloads.DISPLAY_NAME, fileName)
                 put(MediaStore.Downloads.MIME_TYPE, "application/zip")
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    put(MediaStore.Downloads.RELATIVE_PATH, "Download/SimpMusic")
+                    put(MediaStore.Downloads.RELATIVE_PATH, "Download/ORiON")
                 }
             }
 
@@ -173,7 +173,7 @@ class AutoBackupWorker(
                         input.copyTo(output)
                     }
                 }
-                Logger.i(TAG, "Backup saved to Downloads/SimpMusic/$fileName")
+                Logger.i(TAG, "Backup saved to Downloads/ORiON/$fileName")
                 true
             } ?: false
         } catch (e: Exception) {
@@ -197,9 +197,9 @@ class AutoBackupWorker(
             }
 
             val selectionArgs = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                arrayOf("Download/SimpMusic/", "simpmusic_backup_%.zip")
+                arrayOf("Download/ORiON/", "%backup_%.zip")
             } else {
-                arrayOf("simpmusic_backup_%.zip")
+                arrayOf("%backup_%.zip")
             }
 
             val sortOrder = "${MediaStore.Downloads.DATE_ADDED} DESC"
