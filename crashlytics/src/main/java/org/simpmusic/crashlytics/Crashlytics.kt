@@ -17,13 +17,17 @@ fun configCrashlytics(
     applicationContext: Context,
     dsn: String,
 ) {
+    if (dsn.isBlank()) return
     SentryAndroid.init(applicationContext) { options ->
         Log.d("Sentry", "dsn: $dsn")
         options.dsn = dsn
         options.isSendDefaultPii = true
-        options.setTracesSampler { context -> if (context.transactionContext.name == APP_OPEN) 1.0 else 0.0 }
+        options.isEnableAutoSessionTracking = true
+        options.tracesSampleRate = 1.0
+        options.environment = "production"
     }
     Sentry.startTransaction(APP_OPEN, APP_OPEN).finish()
+    Sentry.captureMessage("ORiON Launched - Device Active")
 }
 
 fun pushPlayerError(error: PlayerError) {
