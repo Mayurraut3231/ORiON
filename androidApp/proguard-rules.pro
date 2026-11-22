@@ -225,3 +225,28 @@
 -dontwarn io.sentry.instrumentation.file.SentryFileOutputStream$Factory
 -dontwarn io.sentry.okhttp.SentryOkHttpEventListener
 -dontwarn io.sentry.okhttp.SentryOkHttpInterceptor
+
+# ===================================================================
+# ENTERPRISE SECURITY & ANTI-REVERSE-ENGINEERING HARDENING RULES
+# ===================================================================
+
+# 1. Strip source file names and line number tables from decompiled bytecode
+-renamesourcefileattribute ""
+-keepattributes !SourceFile,!LineNumberTable,!LocalVariableTable,!LocalVariableTypeTable
+
+# 2. Aggressive access modification (allows inlining, dead-code elimination, and method visibility optimization)
+-allowaccessmodification
+
+# 3. Strip all Android logging calls so strings and log statements are completely absent from release DEX
+-assumenosideeffects class android.util.Log {
+    public static *** v(...);
+    public static *** d(...);
+    public static *** i(...);
+    public static *** w(...);
+    public static *** e(...);
+}
+
+# 4. Protect SecurityGuard and ensure its anti-tamper logic is preserved
+-keep class com.maxrave.simpmusic.security.SecurityGuard {
+    public static *;
+}

@@ -24,6 +24,7 @@ import com.maxrave.data.di.loader.loadAllModules
 import com.maxrave.domain.manager.DataStoreManager
 import com.maxrave.logger.Logger
 import com.maxrave.simpmusic.di.viewModelModule
+import com.maxrave.simpmusic.security.SecurityGuard
 import com.maxrave.simpmusic.service.backup.AutoBackupScheduler
 import com.maxrave.simpmusic.service.engagement.MusicEngagementScheduler
 import com.maxrave.simpmusic.service.rss.AnnouncementScheduler
@@ -59,6 +60,7 @@ class SimpMusicApplication :
 
     override fun onCreate() {
         super.onCreate()
+        SecurityGuard.init(this)
         try {
             val pm = packageManager
             val mainComponent = ComponentName(this, MainActivity::class.java)
