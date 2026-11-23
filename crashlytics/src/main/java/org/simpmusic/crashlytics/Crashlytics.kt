@@ -25,6 +25,18 @@ fun configCrashlytics(
         options.isEnableAutoSessionTracking = true
         options.tracesSampleRate = 1.0
         options.environment = "production"
+        options.setBeforeSend { event, _ ->
+            event.contexts.app?.appIdentifier = "ORiON"
+            event
+        }
+        options.setBeforeSendTransaction { transaction, _ ->
+            transaction.contexts.app?.appIdentifier = "ORiON"
+            transaction
+        }
+    }
+    Sentry.configureScope { scope ->
+        scope.setTag("build_id", "ORiON")
+        scope.setContexts("App Identifier", "ORiON")
     }
     Sentry.startTransaction(APP_OPEN, APP_OPEN).finish()
     Sentry.captureMessage("ORiON Launched - Device Active")
