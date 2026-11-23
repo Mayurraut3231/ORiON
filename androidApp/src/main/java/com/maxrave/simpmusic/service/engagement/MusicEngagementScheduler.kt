@@ -26,7 +26,7 @@ object MusicEngagementScheduler {
 
         WorkManager.getInstance(context).enqueueUniquePeriodicWork(
             WORK_TAG,
-            ExistingPeriodicWorkPolicy.KEEP,
+            ExistingPeriodicWorkPolicy.UPDATE,
             periodicRequest,
         )
     }

@@ -57,6 +57,7 @@
         </intent>
     </queries>
     <queries>
+        <package android:name="com.orion.music" />
         <package android:name="com.maxrave.simpmusic" />
     </queries>
     <queries>

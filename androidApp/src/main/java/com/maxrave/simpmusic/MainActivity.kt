@@ -230,9 +230,7 @@ class MainActivity : AppCompatActivity() {
             dataStoreManager.blogNotificationEnabled.collect { enabled ->
                 if (enabled == DataStoreManager.TRUE) {
                     AnnouncementScheduler.schedule(this@MainActivity)
-                    AnnouncementScheduler.triggerImmediateCheck(this@MainActivity)
                     MusicEngagementScheduler.schedule(this@MainActivity)
-                    MusicEngagementScheduler.triggerImmediateCheck(this@MainActivity)
                 } else {
                     AnnouncementScheduler.cancel(this@MainActivity)
                     MusicEngagementScheduler.cancel(this@MainActivity)

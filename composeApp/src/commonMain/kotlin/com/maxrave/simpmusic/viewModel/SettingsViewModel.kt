@@ -232,7 +232,7 @@ class SettingsViewModel(
     private val _videoDownloadQuality = MutableStateFlow<String?>(null)
     val videoDownloadQuality: StateFlow<String?> = _videoDownloadQuality
 
-    private val _localTrackingEnabled = MutableStateFlow<Boolean>(false)
+    private val _localTrackingEnabled = MutableStateFlow<Boolean>(true)
     val localTrackingEnabled: StateFlow<Boolean> = _localTrackingEnabled
 
     private val _blogNotificationEnabled = MutableStateFlow(true)

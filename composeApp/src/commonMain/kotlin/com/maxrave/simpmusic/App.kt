@@ -169,7 +169,7 @@ fun App(
 
     val isLiquidGlassEnabled by viewModel.getEnableLiquidGlass().collectAsStateWithLifecycle(DataStoreManager.FALSE)
     // Analytics only makes sense with local tracking on, so its tab follows that setting.
-    val isLocalTrackingEnabled by viewModel.getLocalTrackingEnabled().collectAsStateWithLifecycle(DataStoreManager.FALSE)
+    val isLocalTrackingEnabled by viewModel.getLocalTrackingEnabled().collectAsStateWithLifecycle(DataStoreManager.TRUE)
     val showAnalyticsTab = isLocalTrackingEnabled == TRUE
     // Mix for you comes from the signed-in YouTube account, so its tab follows the session — the
     // same condition that used to hide the chip inside Library.
