@@ -184,6 +184,7 @@
 #YtDlp
 -keep class com.yausername.** { *; }
 -keep class org.apache.commons.compress.archivers.zip.** { *; }
+-keepattributes SourceFile
 
 ## Rules for NewPipeExtractor
 -keep class org.schabi.newpipe.extractor.timeago.patterns.** { *; }
@@ -239,6 +240,7 @@
 
 # 3. Aggressive Overloading - methods share identical names across signatures
 -overloadaggressively
+-useuniqueclassmembernames
 
 # 4. Strip source file names and line number tables from decompiled bytecode
 -renamesourcefileattribute ""

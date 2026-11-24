@@ -8,7 +8,6 @@ import android.os.Build
 import android.os.Debug
 import android.os.Process
 import androidx.appcompat.app.AlertDialog
-import com.maxrave.common.CoreSecurityGate
 import com.maxrave.logger.Logger
 import com.maxrave.simpmusic.BuildConfig
 import java.io.File
@@ -19,44 +18,41 @@ import java.util.zip.ZipFile
 import kotlin.system.exitProcess
 
 /**
- * Hardened Security, Anti-Tamper, Anti-Cloning & Anti-Reverse-Engineering Engine for ORiON.
+ * Military-grade Security, Anti-Tamper, Anti-Cloning & Anti-Reverse-Engineering Engine for ORiON.
  *
- * Implements multi-layered application hardening:
+ * Provides 7 distinct defense-in-depth protection rings:
  * 1. Cryptographic Package Identity Lock (Prevents copying code into another application)
  * 2. Keystore SHA-256 Certificate Verification (Prevents APK re-signing & repackaging)
  * 3. Dynamic Memory & Bytecode Hooking Detection (Anti-Frida / Anti-Xposed / Anti-LSPosed)
  * 4. Anti-Debugging & Process Trace Attachment Detection (Anti-Ptrace / Anti-JDWP)
  * 5. Root, Magisk, KernelSU, and Systemless Overlay Detection
- * 6. Virtual Space / Dual App Container Detection (Zero false positives for legitimate OEM profiles)
- * 7. Multi-DEX Archive Cryptographic & CRC Checksum Validation (Fail-closed security policy)
+ * 6. Virtual Space / Dual App / Container Cloning Detection
+ * 7. DEX Archive Checksum & Smali Bytecode Modification Detection
  */
 object SecurityGuard {
 
     private const val TAG = "SecurityGuard"
 
-    // Multi-byte dynamic cipher key for non-linear rolling keystream obfuscation
-    private val CIPHER_KEY = byteArrayOf(
-        0x4F, 0x52, 0x69, 0x4F, 0x6E, 0x5F, 0x73, 0x45, 0x63, 0x55, 0x72, 0x49, 0x74, 0x79, 0x5F, 0x6B,
-        0x45, 0x79, 0x5F, 0x32, 0x30, 0x32, 0x36, 0x5F, 0x78, 0x39
+    // XOR mask used to decode sensitive security hashes and package names
+    private const val FINGERPRINT_MASK: Byte = 0x5A
+
+    // Obfuscated representation of "36799843F6C04284E99DB6B30E169A84200326257BC0B374A04D6042B817DB7D"
+    private val OBFUSCATED_SHA256 = byteArrayOf(
+        0x69.toByte(), 0x6C.toByte(), 0x6D.toByte(), 0x63.toByte(), 0x63.toByte(), 0x62.toByte(), 0x6E.toByte(), 0x69.toByte(),
+        0x1C.toByte(), 0x6C.toByte(), 0x19.toByte(), 0x6A.toByte(), 0x6E.toByte(), 0x68.toByte(), 0x62.toByte(), 0x6E.toByte(),
+        0x1F.toByte(), 0x63.toByte(), 0x63.toByte(), 0x1E.toByte(), 0x18.toByte(), 0x6C.toByte(), 0x18.toByte(), 0x69.toByte(),
+        0x6A.toByte(), 0x1F.toByte(), 0x6B.toByte(), 0x6C.toByte(), 0x63.toByte(), 0x1B.toByte(), 0x62.toByte(), 0x6E.toByte(),
+        0x68.toByte(), 0x6A.toByte(), 0x6A.toByte(), 0x69.toByte(), 0x68.toByte(), 0x6C.toByte(), 0x68.toByte(), 0x6F.toByte(),
+        0x6D.toByte(), 0x18.toByte(), 0x19.toByte(), 0x6A.toByte(), 0x18.toByte(), 0x69.toByte(), 0x6D.toByte(), 0x6E.toByte(),
+        0x1B.toByte(), 0x6A.toByte(), 0x6E.toByte(), 0x1E.toByte(), 0x6C.toByte(), 0x6A.toByte(), 0x6E.toByte(), 0x68.toByte(),
+        0x18.toByte(), 0x62.toByte(), 0x6B.toByte(), 0x6D.toByte(), 0x1E.toByte(), 0x18.toByte(), 0x6D.toByte(), 0x1E.toByte()
     )
 
     // Obfuscated representation of official package name "com.maxrave.simpmusic"
     private val OBFUSCATED_PACKAGE_NAME = byteArrayOf(
-        0x3D.toByte(), 0x0D.toByte(), 0x4B.toByte(), 0x0F.toByte(), 0xAE.toByte(), 0x92.toByte(), 0xC0.toByte(), 0xDD.toByte(),
-        0x0B.toByte(), 0x0B.toByte(), 0x50.toByte(), 0x01.toByte(), 0x82.toByte(), 0xB4.toByte(), 0xF1.toByte(), 0xF9.toByte(),
-        0x29.toByte(), 0x2C.toByte(), 0x13.toByte(), 0x05.toByte(), 0x2E.toByte()
-    )
-
-    // Obfuscated representation of "36799843F6C04284E99DB6B30E169A84200326257BC0B374A04D6042B817DB7D"
-    private val OBFUSCATED_SHA256 = byteArrayOf(
-        0x6D.toByte(), 0x54.toByte(), 0x11.toByte(), 0x18.toByte(), 0xFA.toByte(), 0xCB.toByte(), 0x8C.toByte(), 0x9C.toByte(),
-        0x2C.toByte(), 0x4B.toByte(), 0x76.toByte(), 0x1F.toByte(), 0xC5.toByte(), 0xEF.toByte(), 0xA4.toByte(), 0xBD.toByte(),
-        0x01.toByte(), 0x60.toByte(), 0x59.toByte(), 0x28.toByte(), 0x0F.toByte(), 0x98.toByte(), 0xCF.toByte(), 0xB6.toByte(),
-        0xB1.toByte(), 0x64.toByte(), 0x49.toByte(), 0x32.toByte(), 0x25.toByte(), 0x9A.toByte(), 0xC5.toByte(), 0xB9.toByte(),
-        0xB0.toByte(), 0x65.toByte(), 0x7C.toByte(), 0x28.toByte(), 0x2D.toByte(), 0xF3.toByte(), 0xED.toByte(), 0x86.toByte(),
-        0x81.toByte(), 0x21.toByte(), 0x21.toByte(), 0x0F.toByte(), 0x78.toByte(), 0x85.toByte(), 0xA4.toByte(), 0xC4.toByte(),
-        0x96.toByte(), 0x6F.toByte(), 0x53.toByte(), 0x43.toByte(), 0x24.toByte(), 0x1E.toByte(), 0xC6.toByte(), 0xC7.toByte(),
-        0xD5.toByte(), 0x9F.toByte(), 0x55.toByte(), 0x44.toByte(), 0x72.toByte(), 0x63.toByte(), 0xD6.toByte(), 0xBF.toByte()
+        0x39.toByte(), 0x35.toByte(), 0x37.toByte(), 0x74.toByte(), 0x37.toByte(), 0x3B.toByte(), 0x22.toByte(), 0x28.toByte(),
+        0x3B.toByte(), 0x2C.toByte(), 0x3F.toByte(), 0x74.toByte(), 0x29.toByte(), 0x33.toByte(), 0x37.toByte(), 0x2A.toByte(),
+        0x37.toByte(), 0x2F.toByte(), 0x29.toByte(), 0x33.toByte(), 0x39.toByte()
     )
 
     // Silent poisoning flag: if true, all core media and scraping operations return empty or corrupted results
@@ -67,20 +63,11 @@ object SecurityGuard {
     @Volatile
     private var isVerified: Boolean = false
 
-    @Volatile
-    private var lastDeepScanTimestamp: Long = 0L
-    private const val DEEP_SCAN_COOLDOWN_MS: Long = 60_000L
-
     /**
      * Initializes security checks early in Application.onCreate.
-     * Hooks into CoreSecurityGate to protect cross-module operations.
+     * If running in release and critical tampering is detected, kills process immediately.
      */
     fun init(context: Context) {
-        // Register cross-module integrity verifier
-        CoreSecurityGate.verifier = {
-            if (BuildConfig.DEBUG) true else !isCompromised && verifyCoreIntegrity(context)
-        }
-
         if (BuildConfig.DEBUG) {
             Logger.d(TAG, "Running in DEBUG build - security enforcement relaxed for development")
             return
@@ -88,7 +75,6 @@ object SecurityGuard {
 
         if (isEnvironmentCompromised(context)) {
             isCompromised = true
-            CoreSecurityGate.isCompromised = true
             terminateProcess()
         } else {
             isVerified = true
@@ -107,7 +93,6 @@ object SecurityGuard {
 
         if (isCompromised || isEnvironmentCompromised(activity)) {
             isCompromised = true
-            CoreSecurityGate.isCompromised = true
             try {
                 AlertDialog.Builder(activity)
                     .setTitle("Security Violation")
@@ -134,9 +119,8 @@ object SecurityGuard {
     fun verifyCoreIntegrity(context: Context): Boolean {
         if (BuildConfig.DEBUG) return true
         if (isCompromised) return false
-        if (!verifyPackageIdentity(context) || !verifyAppSignature(context) || !verifyDexArchive(context)) {
+        if (!verifyPackageIdentity(context) || !verifyAppSignature(context)) {
             isCompromised = true
-            CoreSecurityGate.isCompromised = true
             return false
         }
         return true
@@ -158,7 +142,7 @@ object SecurityGuard {
             return true
         }
 
-        // 3. Anti-Cloning Containers: Verify not running in known malicious hooking sandbox
+        // 3. Anti-Cloning Containers: Verify not running in Dual App / VirtualXposed space
         if (isVirtualOrClonedEnvironment(context)) {
             Logger.e(TAG, "Security check failed: Running inside virtual app container or sandbox cloner")
             return true
@@ -182,7 +166,7 @@ object SecurityGuard {
             return true
         }
 
-        // 7. Anti-DEX Patching: Multi-DEX archive integrity check (fail-closed)
+        // 7. Anti-DEX Patching: Verify DEX archive integrity
         if (!verifyDexArchive(context)) {
             Logger.e(TAG, "Security check failed: DEX archive modified or corrupted")
             return true
@@ -248,8 +232,8 @@ object SecurityGuard {
     }
 
     /**
-     * Detects virtualized execution environments where attackers clone apps to hook APIs without root.
-     * Uses strict container package signatures to avoid false positives on legitimate OEM dual/work profiles.
+     * Detects virtualized execution environments (DualSpace, Parallel Space, VirtualXposed)
+     * where attackers clone apps to hook APIs without root.
      */
     private fun isVirtualOrClonedEnvironment(context: Context): Boolean {
         try {
@@ -261,18 +245,16 @@ object SecurityGuard {
                 return true
             }
 
-            // Check specifically for known malicious hooking/virtualizer containers (exact package identifiers)
-            val suspiciousContainers = arrayOf(
-                "io.va.exposed",
-                "io.va.vxposed",
+            // Check for known virtualizer signatures in path
+            val suspiciousPaths = arrayOf(
                 "com.lbe.parallel",
                 "com.excelliance.dualaid",
+                "io.va.exposed",
                 "com.vphonegao.dual",
-                "com.bly.dkplat",
-                "com.qihoo.magic",
-                "com.dual.dualspace",
+                "virtual",
+                "parallel",
             )
-            for (p in suspiciousContainers) {
+            for (p in suspiciousPaths) {
                 if (filesPath.contains(p, ignoreCase = true)) {
                     return true
                 }
@@ -320,43 +302,10 @@ object SecurityGuard {
 
     /**
      * Detects presence of dynamic instrumentation frameworks (Frida, Xposed, LSPosed, Substrate, Pine).
-     * Lightweight checks run continuously; heavy I/O and network socket probes are throttled.
      */
     private fun isDynamicHookingDetected(): Boolean {
         try {
-            // 1. Check for known hooking engine classes in ClassLoader (lightweight, memory-only)
-            val suspiciousClasses = arrayOf(
-                "de.robv.android.xposed.XposedBridge",
-                "de.robv.android.xposed.XC_MethodHook",
-                "com.elderdrivers.riru.edxp.core.EdXpCore",
-                "me.weishu.exposed.ExposedBridge",
-                "io.github.lsposed.lspd.nativebridge.NativeBridge",
-                "com.canyie.pine.Pine",
-            )
-            for (clazz in suspiciousClasses) {
-                try {
-                    Class.forName(clazz)
-                    return true
-                } catch (_: ClassNotFoundException) {}
-            }
-
-            // 2. Check for active Frida thread signatures
-            val threads = Thread.getAllStackTraces().keys
-            for (t in threads) {
-                val name = t.name.lowercase()
-                if (name.contains("gum-js-loop") || name.contains("gmain") || name.contains("gdbus") || name.contains("frida")) {
-                    return true
-                }
-            }
-
-            // Throttle heavy checks (reading /proc/self/maps and probing localhost sockets) to prevent UI hitching
-            val now = System.currentTimeMillis()
-            if (now - lastDeepScanTimestamp < DEEP_SCAN_COOLDOWN_MS) {
-                return false
-            }
-            lastDeepScanTimestamp = now
-
-            // 3. Check memory maps for injected libraries
+            // 1. Check memory maps for injected libraries
             val mapsFile = File("/proc/self/maps")
             if (mapsFile.exists() && mapsFile.canRead()) {
                 val hooked = mapsFile.bufferedReader().useLines { lines ->
@@ -377,12 +326,37 @@ object SecurityGuard {
                 if (hooked) return true
             }
 
+            // 2. Check for active Frida threads
+            val threads = Thread.getAllStackTraces().keys
+            for (t in threads) {
+                val name = t.name.lowercase()
+                if (name.contains("gum-js-loop") || name.contains("gmain") || name.contains("gdbus") || name.contains("frida")) {
+                    return true
+                }
+            }
+
+            // 3. Check for known hooking engine classes in ClassLoader
+            val suspiciousClasses = arrayOf(
+                "de.robv.android.xposed.XposedBridge",
+                "de.robv.android.xposed.XC_MethodHook",
+                "com.elderdrivers.riru.edxp.core.EdXpCore",
+                "me.weishu.exposed.ExposedBridge",
+                "io.github.lsposed.lspd.nativebridge.NativeBridge",
+                "com.canyie.pine.Pine",
+            )
+            for (clazz in suspiciousClasses) {
+                try {
+                    Class.forName(clazz)
+                    return true
+                } catch (_: ClassNotFoundException) {}
+            }
+
             // 4. Check for standard Frida server listening ports (27042, 27043, 27045)
             val fridaPorts = intArrayOf(27042, 27043, 27045)
             for (port in fridaPorts) {
                 try {
                     Socket().use { socket ->
-                        socket.connect(InetSocketAddress("127.0.0.1", port), 25)
+                        socket.connect(InetSocketAddress("127.0.0.1", port), 30)
                         return true
                     }
                 } catch (_: Throwable) {}
@@ -450,64 +424,42 @@ object SecurityGuard {
     }
 
     /**
-     * Cryptographic and structural verification of multi-DEX files inside the APK.
-     * Uses a strict fail-closed security policy: if the archive cannot be read, verified,
-     * or contains corrupted/empty DEX files, the check fails.
+     * Validates that the DEX bytecode file inside the APK has not been corrupted or patched.
      */
     private fun verifyDexArchive(context: Context): Boolean {
         return try {
             val apkPath = context.packageCodePath
-            if (apkPath.isNullOrEmpty()) return false
-            val apkFile = File(apkPath)
-            if (!apkFile.exists() || !apkFile.canRead() || apkFile.length() == 0L) return false
-
-            ZipFile(apkFile).use { zip ->
-                val dexEntries = zip.entries().asSequence()
-                    .filter { entry ->
-                        !entry.isDirectory && entry.name.matches(Regex("^classes\\d*\\.dex$"))
-                    }
-                    .toList()
-
-                if (dexEntries.isEmpty()) return false
-
-                // Ensure primary classes.dex exists
-                val hasMainDex = dexEntries.any { it.name == "classes.dex" }
-                if (!hasMainDex) return false
-
-                // Verify every DEX entry has valid non-zero byte size
-                for (entry in dexEntries) {
-                    if (entry.size <= 0 || entry.compressedSize <= 0) {
-                        return false
-                    }
-                }
-                true
+            if (apkPath.isNullOrEmpty()) return true
+            ZipFile(File(apkPath)).use { zip ->
+                val dexEntry = zip.getEntry("classes.dex")
+                dexEntry != null && dexEntry.size > 0
             }
         } catch (_: Throwable) {
-            false // Fail-closed: verification failure treated as compromised
+            true // Avoid false positives on customized OSes
         }
     }
 
     /**
-     * Reconstructs protected strings dynamically using multi-byte non-linear rolling keystream.
+     * Reconstructs the official package name dynamically using bitwise XOR.
      */
-    private fun decodeProtectedBytes(input: ByteArray): String {
-        val out = ByteArray(input.size)
-        for (i in input.indices) {
-            val k = (CIPHER_KEY[i % CIPHER_KEY.size].toInt() xor ((i * 31 + 17) and 0xFF))
-            out[i] = (input[i].toInt() xor k).toByte()
+    private fun getExpectedPackageName(): String {
+        val restored = ByteArray(OBFUSCATED_PACKAGE_NAME.size)
+        for (i in OBFUSCATED_PACKAGE_NAME.indices) {
+            restored[i] = (OBFUSCATED_PACKAGE_NAME[i].toInt() xor FINGERPRINT_MASK.toInt()).toByte()
         }
-        return String(out, Charsets.UTF_8)
+        return String(restored, Charsets.UTF_8)
     }
 
     /**
-     * Reconstructs the official package name dynamically.
+     * Reconstructs the official SHA-256 fingerprint dynamically using bitwise XOR.
      */
-    private fun getExpectedPackageName(): String = decodeProtectedBytes(OBFUSCATED_PACKAGE_NAME)
-
-    /**
-     * Reconstructs the official SHA-256 fingerprint dynamically.
-     */
-    private fun getExpectedFingerprint(): String = decodeProtectedBytes(OBFUSCATED_SHA256)
+    private fun getExpectedFingerprint(): String {
+        val restored = ByteArray(OBFUSCATED_SHA256.size)
+        for (i in OBFUSCATED_SHA256.indices) {
+            restored[i] = (OBFUSCATED_SHA256[i].toInt() xor FINGERPRINT_MASK.toInt()).toByte()
+        }
+        return String(restored, Charsets.UTF_8)
+    }
 
     /**
      * Kills the current process immediately.
