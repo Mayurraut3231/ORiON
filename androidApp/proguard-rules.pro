@@ -208,7 +208,7 @@
 -keep class com.maxrave.data.extension.** { *; }
 -keep class com.maxrave.data.di.** { *; }
 
--keep class com.maxrave.kotlinytmusicscraper.** { *; }
+-keep,allowobfuscation class com.maxrave.kotlinytmusicscraper.models.** { *; }
 
 -keep class org.simpmusic.lyrics.parser.** { *; }
 -keep class org.simpmusic.lyrics.models.** { *; }
@@ -230,14 +230,29 @@
 # ENTERPRISE SECURITY & ANTI-REVERSE-ENGINEERING HARDENING RULES
 # ===================================================================
 
-# 1. Strip source file names and line number tables from decompiled bytecode
--renamesourcefileattribute ""
--keepattributes !SourceFile,!LineNumberTable,!LocalVariableTable,!LocalVariableTypeTable
+# 1. Custom Obfuscation Dictionaries (Confusing Character Mapping: o, O, 0, _, l, I, 1)
+-obfuscationdictionary obfuscation-dictionary.txt
+-classobfuscationdictionary obfuscation-dictionary.txt
+-packageobfuscationdictionary obfuscation-dictionary.txt
 
-# 2. Aggressive access modification (allows inlining, dead-code elimination, and method visibility optimization)
+# 2. Package Flattening - Merge all internal classes into root package
+-repackageclasses ""
+
+# 3. Aggressive Overloading - methods share identical names across signatures
+-overloadaggressively
+-useuniqueclassmembernames
+
+# 4. Strip source file names and line number tables from decompiled bytecode
+-renamesourcefileattribute ""
+-keepattributes !SourceFile,!LineNumberTable,!LocalVariableTable,!LocalVariableTypeTable,!MethodParameters
+
+# 5. Aggressive access modification (allows inlining, dead-code elimination, and method visibility optimization)
 -allowaccessmodification
 
-# 3. Strip all Android logging calls so strings and log statements are completely absent from release DEX
+# 6. Optimization passes
+-optimizationpasses 5
+
+# 7. Strip all Android logging and console output calls from release DEX
 -assumenosideeffects class android.util.Log {
     public static *** v(...);
     public static *** d(...);
@@ -245,8 +260,16 @@
     public static *** w(...);
     public static *** e(...);
 }
+-assumenosideeffects class java.io.PrintStream {
+    public *** print(...);
+    public *** println(...);
+}
+-assumenosideeffects class kotlin.io.ConsoleKt {
+    public static *** print(...);
+    public static *** println(...);
+}
 
-# 4. Protect SecurityGuard and ensure its anti-tamper logic is preserved
+# 8. Protect SecurityGuard and ensure its anti-tamper logic is preserved
 -keep class com.maxrave.simpmusic.security.SecurityGuard {
     public static *;
 }

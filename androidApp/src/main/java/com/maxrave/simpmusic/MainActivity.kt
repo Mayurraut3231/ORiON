@@ -285,6 +285,11 @@ class MainActivity : AppCompatActivity() {
         viewModel.activityRecreate()
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (!SecurityGuard.checkAndEnforce(this)) return
+    }
+
     private fun startMusicService() {
 //        mediaPlayerHandler.startMediaService(this, serviceConnection)
         com.maxrave.media3.di
