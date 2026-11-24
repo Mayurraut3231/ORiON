@@ -1355,6 +1355,10 @@ internal class MediaServiceHandlerImpl(
     }
 
     override fun playMediaItemInMediaSource(index: Int) {
+        if (!com.maxrave.common.CoreSecurityGate.checkIntegrity()) {
+            player.stop()
+            return
+        }
         val i = if (player.shuffleModeEnabled) player.getUnshuffledIndex(index) else index
         player.seekTo(i, 0)
         player.prepare()
