@@ -42,6 +42,7 @@ fun SettingItem(
     subtitle: String = "Subtitle",
     smallSubtitle: Boolean = false,
     isEnable: Boolean = true,
+    leadingContent: @Composable (() -> Unit)? = null,
     onClick: (() -> Unit)? = null,
     switch: Pair<Boolean, ((Boolean) -> Unit)>? = null,
     otherView: @Composable (() -> Unit)? = null,
@@ -100,6 +101,10 @@ fun SettingItem(
                     ),
             verticalAlignment = Alignment.CenterVertically,
         ) {
+            leadingContent?.let {
+                it.invoke()
+                Spacer(Modifier.width(14.dp))
+            }
             Column(
                 modifier = Modifier.weight(1f),
                 horizontalAlignment = Alignment.Start,

@@ -139,7 +139,6 @@ import com.maxrave.simpmusic.ui.icon.Error
 import com.maxrave.simpmusic.ui.icon.PeopleAlt
 import com.maxrave.simpmusic.ui.icon.PlaylistAdd
 import com.maxrave.simpmusic.ui.icon.SimpIcons
-import com.maxrave.simpmusic.ui.navigation.destination.home.AppLogDestination
 import com.maxrave.simpmusic.ui.navigation.destination.home.CreditDestination
 import com.maxrave.simpmusic.ui.navigation.destination.login.DiscordLoginDestination
 import com.maxrave.simpmusic.ui.navigation.destination.login.LastfmLoginDestination
@@ -172,11 +171,15 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.format
 import kotlinx.datetime.format.FormatStringsInDatetimeFormats
 import kotlinx.datetime.format.byUnicodePattern
+import androidx.compose.foundation.Image
+import androidx.compose.ui.layout.ContentScale
 import org.jetbrains.compose.resources.getString
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 import simpmusic.composeapp.generated.resources.Res
+import simpmusic.composeapp.generated.resources.mayur_profile
 import simpmusic.composeapp.generated.resources.base_url
 import simpmusic.composeapp.generated.resources.configured
 import simpmusic.composeapp.generated.resources.custom_base_url
@@ -640,9 +643,6 @@ fun SettingScreen(
         mutableStateOf(false)
     }
     var showThirdPartyLibraries by rememberSaveable {
-        mutableStateOf(false)
-    }
-    var showAdminControlDialog by rememberSaveable {
         mutableStateOf(false)
     }
 
@@ -2741,17 +2741,20 @@ fun SettingScreen(
                     },
                 )
                 SettingItem(
-                    title = "App Owner & Administrator",
-                    subtitle = "Mayur Raut (ORiON)",
-                    onClick = {
-                        showAdminControlDialog = true
+                    title = "Follow me on Instagram",
+                    subtitle = "@mayur_raut_15 (Mayur Raut)",
+                    leadingContent = {
+                        Image(
+                            painter = painterResource(Res.drawable.mayur_profile),
+                            contentDescription = "Mayur Raut",
+                            modifier = Modifier
+                                .size(48.dp)
+                                .clip(CircleShape),
+                            contentScale = ContentScale.Crop,
+                        )
                     },
-                )
-                SettingItem(
-                    title = "Application Control",
-                    subtitle = "Full Admin Access Active (Tap to Open)",
                     onClick = {
-                        showAdminControlDialog = true
+                        openUrl("https://www.instagram.com/mayur_raut_15?hvrq=ajh3c2l0djgyZXkz")
                     },
                 )
                 SettingItem(
@@ -2759,17 +2762,6 @@ fun SettingScreen(
                     subtitle = stringResource(Res.string.description_and_licenses),
                     onClick = {
                         showThirdPartyLibraries = true
-                    },
-                )
-            }
-        }
-        item(key = "developer_option") {
-            SettingGroup(title = stringResource(Res.string.developer_option)) {
-                SettingItem(
-                    title = stringResource(Res.string.app_log),
-                    subtitle = stringResource(Res.string.app_log_description),
-                    onClick = {
-                        navController.navigate(AppLogDestination)
                     },
                 )
             }
@@ -3275,59 +3267,6 @@ fun SettingScreen(
                     },
                 ) {
                     Text(text = alertState.dismiss)
-                }
-            },
-        )
-    }
-
-    if (showAdminControlDialog) {
-        AlertDialog(
-            onDismissRequest = { showAdminControlDialog = false },
-            title = {
-                Text(
-                    text = "Admin Control Center",
-                    style = typo().titleMedium,
-                )
-            },
-            text = {
-                Column {
-                    Text(
-                        text = "Administrator: Mayur Raut\nApp: ORiON v1.0.0\nStatus: Master Admin Control Active\nSecurity: Signed with orion-admin.keystore",
-                        style = typo().bodyMedium,
-                    )
-                    Spacer(Modifier.height(14.dp))
-                    Text(
-                        text = "How to Update Application:",
-                        style = typo().labelLarge,
-                    )
-                    Spacer(Modifier.height(4.dp))
-                    Text(
-                        text = "1. Open ORiON github repo\n2. click on Releases, you will see latest release\n3. then download the latest application",
-                        style = typo().bodySmall,
-                    )
-                    Spacer(Modifier.height(14.dp))
-                    Button(
-                        onClick = {
-                            openUrl("https://github.com/Mayurraut3231/ORiON/releases")
-                        },
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        Text("Manage Releases & Updates")
-                    }
-                    Spacer(Modifier.height(8.dp))
-                    TextButton(
-                        onClick = {
-                            openUrl("https://github.com/Mayurraut3231/ORiON")
-                        },
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        Text("Open ORiON GitHub Repository")
-                    }
-                }
-            },
-            confirmButton = {
-                TextButton(onClick = { showAdminControlDialog = false }) {
-                    Text("Close")
                 }
             },
         )
