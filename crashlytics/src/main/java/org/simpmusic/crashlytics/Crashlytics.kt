@@ -26,15 +26,11 @@ fun configCrashlytics(
         options.tracesSampleRate = 1.0
         options.environment = "production"
         options.setBeforeSend { event, _ ->
-            val app = event.contexts.app ?: io.sentry.protocol.App().also { event.contexts.setApp(it) }
-            app.appIdentifier = "ORiON"
-            app.appName = "ORiON"
+            event.contexts.app?.appIdentifier = "ORiON"
             event
         }
         options.setBeforeSendTransaction { transaction, _ ->
-            val app = transaction.contexts.app ?: io.sentry.protocol.App().also { transaction.contexts.setApp(it) }
-            app.appIdentifier = "ORiON"
-            app.appName = "ORiON"
+            transaction.contexts.app?.appIdentifier = "ORiON"
             transaction
         }
     }

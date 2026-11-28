@@ -91,10 +91,6 @@ internal class StreamRepositoryImpl(
         muxed: Boolean,
     ): Flow<String?> =
         flow {
-            if (!com.maxrave.common.CoreSecurityGate.checkIntegrity()) {
-                emit(null)
-                return@flow
-            }
             val itag =
                 if (isDownloading) {
                     QUALITY.itagOf(dataStoreManager.downloadQuality.first())
