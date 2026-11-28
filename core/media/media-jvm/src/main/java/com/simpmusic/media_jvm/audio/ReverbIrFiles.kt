@@ -1,8 +1,8 @@
 package com.simpmusic.media_jvm.audio
 
-import com.maxrave.domain.data.player.ReverbImpulseResponse
-import com.maxrave.domain.data.player.ReverbPreset
-import com.maxrave.logger.Logger
+import raut.mayur.domain.data.player.ReverbImpulseResponse
+import raut.mayur.domain.data.player.ReverbPreset
+import raut.mayur.logger.Logger
 import java.io.File
 import java.nio.ByteBuffer
 import java.nio.ByteOrder

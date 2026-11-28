@@ -8,8 +8,8 @@ import com.atilika.kuromoji.dict.UnknownDictionary
 import com.atilika.kuromoji.ipadic.Tokenizer
 import com.atilika.kuromoji.trie.DoubleArrayTrie
 import com.atilika.kuromoji.util.ResourceResolver
-import com.maxrave.ktorext.getEngine
-import com.maxrave.logger.Logger
+import raut.mayur.ktorext.getEngine
+import raut.mayur.logger.Logger
 import io.ktor.client.HttpClient
 import io.ktor.client.request.prepareGet
 import io.ktor.client.statement.bodyAsChannel

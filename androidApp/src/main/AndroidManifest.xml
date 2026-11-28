@@ -58,7 +58,7 @@
     </queries>
     <queries>
         <package android:name="com.orion.music" />
-        <package android:name="com.maxrave.simpmusic" />
+        <package android:name="raut.mayur.orion" />
     </queries>
     <queries>
         <intent>
@@ -243,7 +243,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name="com.maxrave.media3.service.SimpleMediaService"
+            android:name="raut.mayur.media3.service.SimpleMediaService"
             android:exported="true"
             android:foregroundServiceType="mediaPlayback"
             android:stopWithTask="false"
@@ -256,7 +256,7 @@
             </intent-filter>
         </service>
         <service
-            android:name="com.maxrave.media3.service.download.MusicDownloadService"
+            android:name="raut.mayur.media3.service.download.MusicDownloadService"
             android:exported="true"
             android:foregroundServiceType="dataSync">
             <intent-filter>
@@ -283,7 +283,7 @@
             android:value="8" />
 
         <service
-            android:name="com.maxrave.media3.carapp.SimpMusicCarAppService"
+            android:name="raut.mayur.media3.carapp.SimpMusicCarAppService"
             android:exported="true"
             tools:ignore="ExportedService">
             <intent-filter>

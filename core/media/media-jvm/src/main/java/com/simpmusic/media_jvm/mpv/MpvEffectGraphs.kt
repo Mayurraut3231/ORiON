@@ -1,9 +1,9 @@
 package com.simpmusic.media_jvm.mpv
 
-import com.maxrave.domain.data.player.DelayTaps
-import com.maxrave.domain.data.player.EightDEffect
-import com.maxrave.domain.data.player.EightDHead
-import com.maxrave.domain.data.player.EightDOrbit
+import raut.mayur.domain.data.player.DelayTaps
+import raut.mayur.domain.data.player.EightDEffect
+import raut.mayur.domain.data.player.EightDHead
+import raut.mayur.domain.data.player.EightDOrbit
 
 internal enum class EightDTransition { ACTIVE, FADE_IN, FADE_OUT }
 

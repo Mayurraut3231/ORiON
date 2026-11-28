@@ -23,7 +23,7 @@ plugins {
 val androidAppDir = rootProject.file("androidApp")
 
 android {
-    namespace = "com.maxrave.simpmusic"
+    namespace = "raut.mayur.orion"
     compileSdk = 37
 
     defaultConfig {

@@ -1,6 +1,6 @@
 package com.simpmusic.media_jvm.mpv
 
-import com.maxrave.logger.Logger
+import raut.mayur.logger.Logger
 import com.sun.jna.Memory
 import com.sun.jna.Pointer
 import com.sun.jna.ptr.PointerByReference

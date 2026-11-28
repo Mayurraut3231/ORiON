@@ -1,8 +1,8 @@
 package org.simpmusic.discord
 
-import com.maxrave.domain.data.entities.SongEntity
-import com.maxrave.ktorext.getEngine
-import com.maxrave.logger.Logger
+import raut.mayur.domain.data.entities.SongEntity
+import raut.mayur.ktorext.getEngine
+import raut.mayur.logger.Logger
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.request.header

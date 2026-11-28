@@ -103,7 +103,7 @@
 -keep class org.jsoup.** { *; }
 -dontwarn org.jsoup.**
 
--keep class com.maxrave.domain.data.model.** { *; }
+-keep class raut.mayur.domain.data.model.** { *; }
 -keep class com.mohamedrejeb.ksoup.html.** { *; }
 -keep class org.schabi.newpipe.extractor.downloader.** { *; }
 -keep class dev.maxrave.pipepipe.extractor.downloader.** { *; }
@@ -177,10 +177,10 @@
 
 -dontwarn org.slf4j.impl.StaticLoggerBinder
 -dontwarn kotlinx.serialization.internal.ClassValueReferences
--keep class com.maxrave.simpmusic.data.model.** { *; }
--keep class com.maxrave.simpmusic.extension.AllExtKt { *; }
--keep class com.maxrave.simpmusic.extension.AllExtKt$* { *; }
--keep class com.maxrave.kotlinytmusicscraper.extension.MapExtKt$* { *; }
+-keep class raut.mayur.orion.data.model.** { *; }
+-keep class raut.mayur.orion.extension.AllExtKt { *; }
+-keep class raut.mayur.orion.extension.AllExtKt$* { *; }
+-keep class raut.mayur.kotlinytmusicscraper.extension.MapExtKt$* { *; }
 
 ## Removes all Logs as they cause perfomance issues in prod
 #-assumenosideeffects class android.util.Log {
@@ -267,7 +267,7 @@
 -keep class com.liskovsoft.** { *; }
 -keep interface com.liskovsoft.** { *; }
 -keep class com.eclipsesource.v8.** { *; }
--keep class com.maxrave.kotlinytmusicscraper.** { *; }
+-keep class raut.mayur.kotlinytmusicscraper.** { *; }
 
 -dontwarn javax.script.AbstractScriptEngine
 -dontwarn javax.script.Bindings
@@ -321,15 +321,15 @@
 -dontwarn java.beans.Introspector
 -dontwarn java.beans.PropertyDescriptor
 
--dontwarn com.maxrave.data.di.loader.LoaderKt
--dontwarn com.maxrave.media3.ui.MediaPlayerViewKt
+-dontwarn raut.mayur.data.di.loader.LoaderKt
+-dontwarn raut.mayur.media3.ui.MediaPlayerViewKt
 
--keep class com.maxrave.data.di.loader.LoaderKt { *; }
--keep class com.maxrave.data.mapping.MappingKt { *; }
--keep class com.maxrave.data.extension.** { *; }
--keep class com.maxrave.data.di.** { *; }
+-keep class raut.mayur.data.di.loader.LoaderKt { *; }
+-keep class raut.mayur.data.mapping.MappingKt { *; }
+-keep class raut.mayur.data.extension.** { *; }
+-keep class raut.mayur.data.di.** { *; }
 
--keep class com.maxrave.kotlinytmusicscraper.** { *; }
+-keep class raut.mayur.kotlinytmusicscraper.** { *; }
 
 -keep class org.simpmusic.lyrics.parser.** { *; }
 -keep class org.simpmusic.lyrics.models.** { *; }

@@ -1,8 +1,8 @@
 package com.simpmusic.media_jvm.mpv
 
-import com.maxrave.domain.data.player.EightDDirection
-import com.maxrave.domain.data.player.EightDEffect
-import com.maxrave.domain.data.player.EightDHead
+import raut.mayur.domain.data.player.EightDDirection
+import raut.mayur.domain.data.player.EightDEffect
+import raut.mayur.domain.data.player.EightDHead
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test

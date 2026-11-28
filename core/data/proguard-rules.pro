@@ -114,7 +114,7 @@
 -keep interface com.liskovsoft.** { *; }
 -keep class com.eclipsesource.v8.** { *; }
 -keep class com.liskovsoft.**
--keep class com.maxrave.kotlinytmusicscraper.** { *; }
+-keep class raut.mayur.kotlinytmusicscraper.** { *; }
 
 
 ## Rules for NewPipeExtractor
@@ -122,43 +122,43 @@
 -keep class org.mozilla.classfile.ClassFileWriter
 -dontwarn org.mozilla.javascript.tools.**
 
--keep class com.maxrave.data.di.loader.LoaderKt { *; }
--keep class com.maxrave.data.mapping.MappingKt { *; }
--keep class com.maxrave.data.extension.** { *; }
+-keep class raut.mayur.data.di.loader.LoaderKt { *; }
+-keep class raut.mayur.data.mapping.MappingKt { *; }
+-keep class raut.mayur.data.extension.** { *; }
 
--keep class com.maxrave.kotlinytmusicscraper.extension.** { *; }
--keep class com.maxrave.kotlinytmusicscraper.models.** { *; }
--keep class com.maxrave.kotlinytmusicscraper.parser.** { *; }
--keep class com.maxrave.kotlinytmusicscraper.pages.** { *; }
--keep class com.maxrave.kotlinytmusicscraper.utils.** { *; }
+-keep class raut.mayur.kotlinytmusicscraper.extension.** { *; }
+-keep class raut.mayur.kotlinytmusicscraper.models.** { *; }
+-keep class raut.mayur.kotlinytmusicscraper.parser.** { *; }
+-keep class raut.mayur.kotlinytmusicscraper.pages.** { *; }
+-keep class raut.mayur.kotlinytmusicscraper.utils.** { *; }
 
 -keep class org.simpmusic.lyrics.parser.** { *; }
 -keep class org.simpmusic.lyrics.models.** { *; }
 -keep class com.simpmusic.lyrics.parser.** { *; }
 
--dontwarn com.maxrave.kotlinytmusicscraper.YouTube$SearchFilter$Companion
--dontwarn com.maxrave.kotlinytmusicscraper.YouTube$SearchFilter
--dontwarn com.maxrave.kotlinytmusicscraper.YouTube
--dontwarn com.maxrave.media3.di.Media3ServiceModuleKt
--dontwarn com.maxrave.media3.exoplayer.ExoPlayerAdapter
--dontwarn com.maxrave.spotify.Spotify
--dontwarn com.maxrave.spotify.model.response.spotify.CanvasResponse$Canvas$ThumbOfCanva
--dontwarn com.maxrave.spotify.model.response.spotify.CanvasResponse$Canvas
--dontwarn com.maxrave.spotify.model.response.spotify.CanvasResponse
--dontwarn com.maxrave.spotify.model.response.spotify.ClientTokenResponse$GrantedToken
--dontwarn com.maxrave.spotify.model.response.spotify.ClientTokenResponse
--dontwarn com.maxrave.spotify.model.response.spotify.PersonalTokenResponse
--dontwarn com.maxrave.spotify.model.response.spotify.SpotifyLyricsResponse$Lyrics$Line
--dontwarn com.maxrave.spotify.model.response.spotify.SpotifyLyricsResponse$Lyrics
--dontwarn com.maxrave.spotify.model.response.spotify.SpotifyLyricsResponse
--dontwarn com.maxrave.spotify.model.response.spotify.search.SpotifySearchResponse$Data$Search$TracksV2$Items$Item$DataX$Duration
--dontwarn com.maxrave.spotify.model.response.spotify.search.SpotifySearchResponse$Data$Search$TracksV2$Items$Item$DataX
--dontwarn com.maxrave.spotify.model.response.spotify.search.SpotifySearchResponse$Data$Search$TracksV2$Items$Item
--dontwarn com.maxrave.spotify.model.response.spotify.search.SpotifySearchResponse$Data$Search$TracksV2$Items
--dontwarn com.maxrave.spotify.model.response.spotify.search.SpotifySearchResponse$Data$Search$TracksV2
--dontwarn com.maxrave.spotify.model.response.spotify.search.SpotifySearchResponse$Data$Search
--dontwarn com.maxrave.spotify.model.response.spotify.search.SpotifySearchResponse$Data
--dontwarn com.maxrave.spotify.model.response.spotify.search.SpotifySearchResponse
+-dontwarn raut.mayur.kotlinytmusicscraper.YouTube$SearchFilter$Companion
+-dontwarn raut.mayur.kotlinytmusicscraper.YouTube$SearchFilter
+-dontwarn raut.mayur.kotlinytmusicscraper.YouTube
+-dontwarn raut.mayur.media3.di.Media3ServiceModuleKt
+-dontwarn raut.mayur.media3.exoplayer.ExoPlayerAdapter
+-dontwarn raut.mayur.spotify.Spotify
+-dontwarn raut.mayur.spotify.model.response.spotify.CanvasResponse$Canvas$ThumbOfCanva
+-dontwarn raut.mayur.spotify.model.response.spotify.CanvasResponse$Canvas
+-dontwarn raut.mayur.spotify.model.response.spotify.CanvasResponse
+-dontwarn raut.mayur.spotify.model.response.spotify.ClientTokenResponse$GrantedToken
+-dontwarn raut.mayur.spotify.model.response.spotify.ClientTokenResponse
+-dontwarn raut.mayur.spotify.model.response.spotify.PersonalTokenResponse
+-dontwarn raut.mayur.spotify.model.response.spotify.SpotifyLyricsResponse$Lyrics$Line
+-dontwarn raut.mayur.spotify.model.response.spotify.SpotifyLyricsResponse$Lyrics
+-dontwarn raut.mayur.spotify.model.response.spotify.SpotifyLyricsResponse
+-dontwarn raut.mayur.spotify.model.response.spotify.search.SpotifySearchResponse$Data$Search$TracksV2$Items$Item$DataX$Duration
+-dontwarn raut.mayur.spotify.model.response.spotify.search.SpotifySearchResponse$Data$Search$TracksV2$Items$Item$DataX
+-dontwarn raut.mayur.spotify.model.response.spotify.search.SpotifySearchResponse$Data$Search$TracksV2$Items$Item
+-dontwarn raut.mayur.spotify.model.response.spotify.search.SpotifySearchResponse$Data$Search$TracksV2$Items
+-dontwarn raut.mayur.spotify.model.response.spotify.search.SpotifySearchResponse$Data$Search$TracksV2
+-dontwarn raut.mayur.spotify.model.response.spotify.search.SpotifySearchResponse$Data$Search
+-dontwarn raut.mayur.spotify.model.response.spotify.search.SpotifySearchResponse$Data
+-dontwarn raut.mayur.spotify.model.response.spotify.search.SpotifySearchResponse
 -dontwarn org.simpmusic.aiservice.AIHost
 -dontwarn org.simpmusic.aiservice.AiClient
 -dontwarn org.simpmusic.lyrics.SimpMusicLyricsClient

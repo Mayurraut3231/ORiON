@@ -46,7 +46,7 @@ kotlin {
         freeCompilerArgs.add("-Xexpect-actual-classes")
     }
     android {
-        namespace = "com.maxrave.simpmusic.composeapp"
+        namespace = "raut.mayur.orion.composeapp"
         compileSdk = 37
         minSdk = 26
         withJava()
@@ -832,7 +832,7 @@ val mpvSetupAll by tasks.registering {
 }
 
 buildkonfig {
-    packageName = "com.maxrave.simpmusic"
+    packageName = "raut.mayur.orion"
     exposeObjectWithName = "BuildKonfig"
     defaultConfigs {
         val versionName =

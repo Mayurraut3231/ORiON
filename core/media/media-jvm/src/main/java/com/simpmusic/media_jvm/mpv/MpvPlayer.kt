@@ -1,9 +1,9 @@
 package com.simpmusic.media_jvm.mpv
 
-import com.maxrave.domain.data.player.AudioEffects
-import com.maxrave.domain.data.player.EightDEffect
-import com.maxrave.domain.data.player.EightDOrbit
-import com.maxrave.logger.Logger
+import raut.mayur.domain.data.player.AudioEffects
+import raut.mayur.domain.data.player.EightDEffect
+import raut.mayur.domain.data.player.EightDOrbit
+import raut.mayur.logger.Logger
 import com.sun.jna.Memory
 import com.sun.jna.Pointer
 import java.util.Locale

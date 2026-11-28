@@ -1,15 +1,15 @@
 package com.simpmusic.media_jvm.download
 
-import com.maxrave.common.MERGING_DATA_TYPE
-import com.maxrave.domain.data.entities.DownloadState
-import com.maxrave.domain.manager.DataStoreManager
-import com.maxrave.domain.mediaservice.handler.DownloadHandler
-import com.maxrave.domain.notification.DesktopNotificationManager
-import com.maxrave.domain.repository.SongRepository
-import com.maxrave.domain.repository.StreamRepository
-import com.maxrave.domain.utils.isLive
-import com.maxrave.domain.utils.toTrack
-import com.maxrave.logger.Logger
+import raut.mayur.common.MERGING_DATA_TYPE
+import raut.mayur.domain.data.entities.DownloadState
+import raut.mayur.domain.manager.DataStoreManager
+import raut.mayur.domain.mediaservice.handler.DownloadHandler
+import raut.mayur.domain.notification.DesktopNotificationManager
+import raut.mayur.domain.repository.SongRepository
+import raut.mayur.domain.repository.StreamRepository
+import raut.mayur.domain.utils.isLive
+import raut.mayur.domain.utils.toTrack
+import raut.mayur.logger.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

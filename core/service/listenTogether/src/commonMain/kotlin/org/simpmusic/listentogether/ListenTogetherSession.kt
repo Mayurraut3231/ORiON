@@ -1,6 +1,6 @@
 package org.simpmusic.listentogether
 
-import com.maxrave.logger.Logger
+import raut.mayur.logger.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

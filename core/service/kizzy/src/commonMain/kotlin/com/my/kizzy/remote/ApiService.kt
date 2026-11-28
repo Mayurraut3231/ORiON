@@ -11,8 +11,8 @@
  */
 package com.my.kizzy.remote
 
-import com.maxrave.ktorext.curl.CurlLogger
-import com.maxrave.logger.Logger
+import raut.mayur.ktorext.curl.CurlLogger
+import raut.mayur.logger.Logger
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation

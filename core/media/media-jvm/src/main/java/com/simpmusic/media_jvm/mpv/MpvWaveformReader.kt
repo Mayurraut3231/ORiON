@@ -1,10 +1,10 @@
 package com.simpmusic.media_jvm.mpv
 
-import com.maxrave.domain.mediaservice.automix.TrackStructure
-import com.maxrave.domain.mediaservice.automix.TrackStructureAnalyzer
-import com.maxrave.domain.mediaservice.player.WAVEFORM_BARS_PER_SECOND
-import com.maxrave.domain.mediaservice.player.WaveformProgress
-import com.maxrave.logger.Logger
+import raut.mayur.domain.mediaservice.automix.TrackStructure
+import raut.mayur.domain.mediaservice.automix.TrackStructureAnalyzer
+import raut.mayur.domain.mediaservice.player.WAVEFORM_BARS_PER_SECOND
+import raut.mayur.domain.mediaservice.player.WaveformProgress
+import raut.mayur.logger.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
