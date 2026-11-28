@@ -58,6 +58,7 @@
     </queries>
     <queries>
         <package android:name="com.orion.music" />
+        <package android:name="com.maxrave.simpmusic" />
         <package android:name="raut.mayur.orion" />
     </queries>
     <queries>

@@ -20,7 +20,7 @@ android {
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "raut.mayur.orion"
+        applicationId = "com.maxrave.simpmusic"
         minSdk = 26
         targetSdk = 36
         versionCode =

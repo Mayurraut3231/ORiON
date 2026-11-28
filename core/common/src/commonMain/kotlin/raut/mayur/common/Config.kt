@@ -15,6 +15,8 @@ object Config {
      */
     val OFFICIAL_PACKAGE_NAMES =
         setOf(
+            "com.maxrave.simpmusic",
+            "com.maxrave.simpmusic.dev",
             "com.orion.music",
             "com.orion.music.dev",
             "raut.mayur.orion",

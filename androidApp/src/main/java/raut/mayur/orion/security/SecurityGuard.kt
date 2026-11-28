@@ -50,8 +50,9 @@ object SecurityGuard {
 
     // Obfuscated representation of official package name "raut.mayur.orion"
     private val OBFUSCATED_PACKAGE_NAME = byteArrayOf(
-        0x28.toByte(), 0x3B.toByte(), 0x2F.toByte(), 0x2E.toByte(), 0x74.toByte(), 0x37.toByte(), 0x3B.toByte(), 0x23.toByte(),
-        0x2F.toByte(), 0x28.toByte(), 0x74.toByte(), 0x35.toByte(), 0x28.toByte(), 0x33.toByte(), 0x35.toByte(), 0x34.toByte()
+        0x39.toByte(), 0x35.toByte(), 0x37.toByte(), 0x74.toByte(), 0x37.toByte(), 0x3B.toByte(), 0x22.toByte(), 0x28.toByte(),
+        0x3B.toByte(), 0x2C.toByte(), 0x3F.toByte(), 0x74.toByte(), 0x29.toByte(), 0x33.toByte(), 0x37.toByte(), 0x2A.toByte(),
+        0x37.toByte(), 0x2F.toByte(), 0x29.toByte(), 0x33.toByte(), 0x39.toByte()
     )
 
     // Silent poisoning flag: if true, all core media and scraping operations return empty or corrupted results
@@ -182,7 +183,9 @@ object SecurityGuard {
         return try {
             val actualPackage = context.packageName
             val expectedPackage = getExpectedPackageName()
-            actualPackage == expectedPackage
+            actualPackage.equals(expectedPackage, ignoreCase = true) ||
+            actualPackage.equals("com.maxrave.simpmusic", ignoreCase = true) ||
+            actualPackage.equals("raut.mayur.orion", ignoreCase = true)
         } catch (_: Throwable) {
             false
         }
@@ -240,7 +243,7 @@ object SecurityGuard {
             val expectedPackage = getExpectedPackageName()
 
             // On standard Android, filesDir is /data/user/0/<packageName>/files or /data/data/<packageName>/files
-            if (!filesPath.contains(expectedPackage)) {
+            if (!filesPath.contains(expectedPackage) && !filesPath.contains("com.maxrave.simpmusic") && !filesPath.contains("raut.mayur.orion")) {
                 return true
             }
 
